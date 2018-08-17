@@ -5,7 +5,8 @@ div#white{
 }
 div#blue{
     height: 100vh;
-    background: linear-gradient(90deg, #cce0e9, #48809c);
+    width: 100vw;
+    background: linear-gradient(90deg, #87989c, #cce0e9);
     background-size: 400% 400%;
     
     -webkit-animation: AnimationName 8s ease infinite;
@@ -31,14 +32,14 @@ h1#hello{
     color: #48809c;
     font-family: 'Sacramento', cursive;
     font-family: 'Gloria Hallelujah', cursive;
-    font-size: 36px;
+    font-size: 200%;
 }
 h1#world{
     color: #48809c;
     font-family: 'Sacramento', cursive;
     font-family: 'Gloria Hallelujah', cursive;
     font-family: 'Fredericka the Great', cursive;
-    font-size: 72px;
+    font-size: 330%;
 }
 p#subtitle{
     color: #48809c;
@@ -56,7 +57,11 @@ p#subtitle span{
 }
 h4{
     color: #48809c;
+    font-size: 100%;
 }
 button{
     background: #48809c;
+}
+.middle{
+    height: 80vh;
 }
