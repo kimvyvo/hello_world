@@ -1,0 +1,62 @@
+div#white{
+    width: 60vw;
+    height: 100vh;
+    background: linear-gradient(118deg, #f8f9fa 60%, rgba(0,0,0,0) 60%);
+}
+div#blue{
+    height: 100vh;
+    background: linear-gradient(90deg, #cce0e9, #48809c);
+    background-size: 400% 400%;
+    
+    -webkit-animation: AnimationName 8s ease infinite;
+    -moz-animation: AnimationName 8s ease infinite;
+    animation: AnimationName 8s ease infinite;
+}
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 33%}
+    50%{background-position:100% 68%}
+    100%{background-position:0% 33%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 33%}
+    50%{background-position:100% 68%}
+    100%{background-position:0% 33%}
+}
+@keyframes AnimationName { 
+    0%{background-position:0% 33%}
+    50%{background-position:100% 68%}
+    100%{background-position:0% 33%}
+}
+h1#hello{
+    color: #48809c;
+    font-family: 'Sacramento', cursive;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 36px;
+}
+h1#world{
+    color: #48809c;
+    font-family: 'Sacramento', cursive;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 72px;
+}
+p#subtitle{
+    color: #48809c;
+    font-family: 'Fredericka the Great', cursive;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Sacramento', cursive;
+    font-family: 'Gruppo', cursive;
+}
+p#subtitle span{
+    background:#f8f9fa; 
+    padding:0 10px; 
+}
+.round{
+    border-radius: 30px;
+}
+h4{
+    color: #48809c;
+}
+button{
+    background: #48809c;
+}

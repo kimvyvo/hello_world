@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Sacramento');
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Gloria+Hallelujah|Sacramento');
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Gloria+Hallelujah|Gruppo|Sacramento');
+body{
+    margin: 0px;
+    padding: 0px;
+}
+div, p{
+    font-family: 'Fredericka the Great', cursive;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-family: 'Sacramento', cursive;
+    font-family: 'Gruppo', cursive;
+}
