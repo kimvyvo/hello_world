@@ -3,12 +3,12 @@
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Sacramento');
 @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Gloria+Hallelujah|Sacramento');
 @import url('https://fonts.googleapis.com/css?family=Cantarell|Crimson+Text|Gochi+Hand|Josefin+Slab|Short+Stack');
-@import url('https://fonts.googleapis.com/css?family=Cantarell|Crimson+Text|Gochi+Hand|Josefin+Slab|Short+Stack|Spinnaker');
+@import url('https://fonts.googleapis.com/css?family=Cantarell|Crimson+Text|Gochi+Hand|Josefin+Slab|Roboto+Mono|Short+Stack|Spinnaker');
 body{
     margin: 0px;
     padding: 0px;
 }
-h2, h3, h4, h5, h6{
+h2, h3, h4, h5, h6, button{
     font-family: 'Short Stack', cursive;
     font-family: 'Crimson Text', serif;
     font-family: 'Josefin Slab', serif;
@@ -16,10 +16,5 @@ h2, h3, h4, h5, h6{
     font-family: 'Gochi Hand', cursive;
 }
 div, p{
-    font-family: 'Short Stack', cursive;
-    font-family: 'Crimson Text', serif;
-    font-family: 'Josefin Slab', serif;
-    font-family: 'Cantarell', sans-serif;
-    font-family: 'Gochi Hand', cursive;
-    font-family: 'Spinnaker', sans-serif;
+    font-family: Verdana;
 }

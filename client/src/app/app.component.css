@@ -51,29 +51,39 @@ p#subtitle{
     font-family: 'Gochi Hand', cursive;
     font-size: 150%;
 }
-p#subtitle span{
-    background:#f8f9fa; 
-    padding:0 10px; 
-}
-.round{
-    border-radius: 12px;
-}
-h4{
+h2{
     color: #48809c;
-    font-family: 'Short Stack', cursive;
-    font-family: 'Crimson Text', serif;
-    font-family: 'Josefin Slab', serif;
-    font-family: 'Cantarell', sans-serif;
-    font-family: 'Gochi Hand', cursive;
-    font-size: 150%;
 }
 button{
     background: #48809c;
+    font-size: 150%;
 }
 .circle{
+    background: #48809c;
     width: 400px;
     height: 400px;
-    padding: 75px 0px;
-    border: 10px solid #48809c;
+    padding: 120px 0px;
     border-radius: 50%;
+}
+input{
+    font-size: 80%
+}
+button#top{
+    background: #f8f9fa;
+    width: 400px;
+    height: 200px;
+    border-top: 20px solid #cbdfe9;
+    border-top-left-radius: 220px;
+    border-top-right-radius: 220px;
+    color: #48809c;
+    font-size: 200%
+}
+button#bottom{
+    background: #48809c;
+    width: 400px;
+    height: 200px;
+    border-bottom-left-radius: 220px;
+    border-bottom-right-radius: 220px;
+    color: #48809c;
+    font-size: 200%;
 }
