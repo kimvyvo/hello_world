@@ -7,13 +7,14 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'client';
   constructor(
     private _httpService: HttpService,
     private _route: ActivatedRoute,
-    private _router: Router){}
-  ngOnInit(){
-    this._route.params.subscribe((params: Params) => {})
+    private _router: Router) {}
+
+  ngOnInit() {
+    this._route.params.subscribe((params: Params) => {});
   }
 }
