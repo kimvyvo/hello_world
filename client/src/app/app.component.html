@@ -1,26 +1,25 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div id='blue' class='position-fixed p-0 m-0'>
   <div id='white' class='col p-0 position-fixed'></div>
-    <div class='row'>
-      <div class='col px-5 pt-5 pb-0'>
-        <h1 id='hello' class='d-inline align-middle'>hello </h1> <h1 id='world' class='d-inline align-middle'>W<i class="fas fa-globe-americas"></i>RLD</h1>
-        <p id='subtitle'>Translate Your Life <i class="fas fa-comments"></i></p>
+      <div class='col px-5 pt-5 pb-0 text-center'>
+        <h1 id='hello' class='m-0'>hello </h1> 
+        <h1 id='world' class='d-inline align-middle'>W<i class="fas fa-globe-americas"></i>RLD</h1>
+        <p id='subtitle'>Your Life, Translated <i class="fas fa-comments"></i></p>
       </div>
-      <div class='col p-5 text-center'>
-        <div class='col-sm-8 mb-5 mx-auto p-5 bg-light align-middle'>
-          <h4><i class="fas fa-globe-americas"></i> Start a new session: </h4>
+      <div class='col pt-3 text-center'>
+        <div class='mb-5 mx-auto bg-light circle'>
+          <h4 class='mb-0'>start a session</h4>
           <form class='mb-3'>
-            <input type=text name='name' placeholder='Enter Your Name' class='col-sm-10 mx-2 mb-2 p-2 border border-dark text-center round'>
-            <div class='col-sm-10 mx-auto text-right'><button class='btn text-light round'>start</button></div>
+            <input type=text name='name' placeholder='Enter Your Name' class='col-sm-8 mx-2 mb-2 p-2 border border-dark text-center round'>
+            <br><button class='btn text-light round'>start</button>
           </form>
-          <h4><i class="fas fa-globe-americas"></i> Join existing session: </h4>
+          <h4 class='mb-0'>join a session</h4>
           <form>
-            <input type=text name='session_id' placeholder='Enter Session ID' class='col-sm-10 mx-2 mb-2 p-2 border border-dark text-center round'>
-            <div class='col-sm-10 mx-auto text-right'><button class='btn text-light round'>join</button></div>
+            <input type=text name='session_id' placeholder='Enter Session ID' class='col-sm-8 mx-2 mb-2 p-2 border border-dark text-center round'>
+            <br><button class='btn text-light round'>join</button>
           </form>
         </div>
       </div>
-    </div>
   </div>
   
   <router-outlet></router-outlet>

@@ -2,14 +2,24 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Sacramento');
 @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Gloria+Hallelujah|Sacramento');
-@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Gloria+Hallelujah|Gruppo|Sacramento');
+@import url('https://fonts.googleapis.com/css?family=Cantarell|Crimson+Text|Gochi+Hand|Josefin+Slab|Short+Stack');
+@import url('https://fonts.googleapis.com/css?family=Cantarell|Crimson+Text|Gochi+Hand|Josefin+Slab|Short+Stack|Spinnaker');
 body{
     margin: 0px;
     padding: 0px;
 }
+h2, h3, h4, h5, h6{
+    font-family: 'Short Stack', cursive;
+    font-family: 'Crimson Text', serif;
+    font-family: 'Josefin Slab', serif;
+    font-family: 'Cantarell', sans-serif;
+    font-family: 'Gochi Hand', cursive;
+}
 div, p{
-    font-family: 'Fredericka the Great', cursive;
-    font-family: 'Gloria Hallelujah', cursive;
-    font-family: 'Sacramento', cursive;
-    font-family: 'Gruppo', cursive;
+    font-family: 'Short Stack', cursive;
+    font-family: 'Crimson Text', serif;
+    font-family: 'Josefin Slab', serif;
+    font-family: 'Cantarell', sans-serif;
+    font-family: 'Gochi Hand', cursive;
+    font-family: 'Spinnaker', sans-serif;
 }
