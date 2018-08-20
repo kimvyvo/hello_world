@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-video',
@@ -10,10 +11,12 @@ export class VideoComponent implements OnInit {
     audio: true,
     video: true
   };
-  constructor() { }
+  socket: SocketIOClient.Socket;
+  constructor() { this.socket = io.connect(); }
 
   ngOnInit() {
     this.displayVideo();
+    this.socket.emit('test_event', {msg: 'Plase work...'});
   }
   displayVideo() {
     navigator.mediaDevices.getUserMedia(this.mediaConstraints)
@@ -25,7 +28,7 @@ export class VideoComponent implements OnInit {
       };
     })
     .catch(function(err) {
-      console.log('An error occured when streaming video.');
+      console.log('An error occured when streaming video. Details:', err);
     });
   }
 }

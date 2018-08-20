@@ -14,5 +14,8 @@ app.all("*", (request ,response ,next) => {
 });
 
 io.on('connection', function(socket) {
-
+    console.log('Connection established!');
+    socket.on('test_event', function(data){
+        console.log(data.msg);
+    });
 });
