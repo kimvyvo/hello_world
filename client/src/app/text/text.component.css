@@ -1,0 +1,18 @@
+#chat_box {
+    width: 800px;
+    height: 600px;
+    border: 2px solid black;
+    margin-top: 20px;
+    margin-left: 10px;
+    padding: 20px;
+    overflow: auto;
+}
+
+#input_form {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+p {
+    display: inline-block;
+}

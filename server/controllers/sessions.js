@@ -32,7 +32,7 @@ module.exports = {
         });
     },
     update: function(req, res){
-        Session.findByIdAndUpdate({_id: req.params.id}, {$set: req.body}, { runValidators: true }, function(err){
+        Session.findOneAndUpdate({_id: req.params.id}, {$set: req.body}, { runValidators: true }, function(err){
             if(err){
                 console.log('Something went wrong when updating a session, detail: ', err);
                 res.json({message: 'Error', error: err});

@@ -6,14 +6,17 @@ import { TextComponent } from './text/text.component';
 import { DrawComponent } from './draw/draw.component';
 import { WatchComponent } from './watch/watch.component';
 import { ErrorComponent } from './error/error.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
-  { path: 'video', component: VideoComponent },
-  { path: 'text', component: TextComponent },
-  { path: 'draw', component: DrawComponent },
-  { path: 'watch', component: WatchComponent },
-  { path: '**', component: ErrorComponent }
+  { path: 'dashboard/:id', component: DashboardComponent, children: [
+    { path: 'video', component: VideoComponent },
+    { path: 'text', component: TextComponent },
+    { path: 'draw', component: DrawComponent },
+    { path: 'watch', component: WatchComponent }
+  ] },
+  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({
