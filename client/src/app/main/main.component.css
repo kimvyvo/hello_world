@@ -7,7 +7,7 @@ div#blue{
     height: 100vh;
     width: 100vw;
     overflow-y: scroll;
-    background: linear-gradient(90deg, #eceaca, #cce0e9);
+    background: linear-gradient(90deg, #cce0e9, #eceaca);
     background-size: 400% 400%;
     
     -webkit-animation: AnimationName 8s ease infinite;
@@ -84,6 +84,7 @@ button#bottom{
     height: 200px;
     border-bottom-left-radius: 220px;
     border-bottom-right-radius: 220px;
+    border-bottom: 20px solid #cbdfe9;
     color: #48809c;
     font-size: 200%;
 }
