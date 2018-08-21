@@ -47,7 +47,7 @@ module.exports = {
                 console.log('Something went wrong when removing a session');
                 res.json({message: 'Error', error: err});
             }else{
-                session.find({}, function(err, sessions){
+                Session.find({}, function(err, sessions){
                     if(err){
                         console.log('Something went wrong when getting all sessions');
                         res.json({message: 'Error', error: err});

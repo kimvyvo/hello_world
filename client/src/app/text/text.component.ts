@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../http.service';
 import { ShareService } from '../share.service';
-import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-text',
@@ -10,20 +9,19 @@ import * as io from 'socket.io-client';
   styleUrls: ['./text.component.css']
 })
 export class TextComponent implements OnInit {
-  socket: SocketIOClient.Socket;
   input_message = '';
   current_session_id = '';
   constructor(
     private _httpService: HttpService,
     private _shareService: ShareService,
-    private _route: ActivatedRoute) { this.socket = io.connect(); }
+    private _route: ActivatedRoute) { }
 
   ngOnInit() {
     this._route.parent.params.subscribe((params: Params) => {
       console.log(params);
       this.current_session_id = params.id;
-      this.socket.emit('init_text');
-      this.socket.on('receive_text', () => {
+      this._shareService.socket.emit('init_text');
+      this._shareService.socket.on('receive_text', () => {
         this.updateChatBox();
       });
     });
@@ -36,7 +34,7 @@ export class TextComponent implements OnInit {
       const observable2 = this._httpService.editSession(this.current_session_id, {chat_content: new_msg});
       observable2.subscribe((data2: any) => {
         console.log('Updated session. Result:', data2);
-        this.socket.emit('send_text');
+        this._shareService.socket.emit('send_text');
         this.input_message = '';
       });
     });
@@ -48,5 +46,4 @@ export class TextComponent implements OnInit {
       document.getElementById('chat_box').innerHTML = data.data.chat_content;
     });
   }
-
 }

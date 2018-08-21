@@ -1,6 +1,7 @@
-<button [routerLink]="['/dashboard', selected_session, 'video']">video</button>
-<button [routerLink]="['/dashboard', selected_session, 'text']">text</button>
-<button [routerLink]="['/dashboard', selected_session, 'draw']">draw</button>
-<button [routerLink]="['/dashboard', selected_session, 'watch']">watch</button>
+<button [routerLink]="['/dashboard', selected_session, 'video']">Video</button>
+<button [routerLink]="['/dashboard', selected_session, 'text']">Text</button>
+<button [routerLink]="['/dashboard', selected_session, 'draw']">Draw</button>
+<button [routerLink]="['/dashboard', selected_session, 'watch']">Watch</button>
+<button (click)="leaveSite()">Leave</button>
 
 <router-outlet></router-outlet>

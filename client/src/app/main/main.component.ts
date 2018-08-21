@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
       const observable2 = this._httpService.addUser(data.data[data.data.length - 1]._id, {name: this.create_name});
       observable2.subscribe((data2: any) => {
         console.log('Added a user. Result:', data2);
-        this._shareService.setUser(data.data[data.data.length - 1]._id, this.create_name);
+        this._shareService.setUser(data2.data._id, this.create_name);
         this._router.navigate(['/dashboard/' + data.data[data.data.length - 1]._id ]);
       });
     });

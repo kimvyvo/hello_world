@@ -26,4 +26,7 @@ export class HttpService {
   addUser(id, new_user) {
     return this._http.post(`/users/${id}`, new_user);
   }
+  deleteUser(id, sid) {
+    return this._http.delete(`/users/${id}/${sid}`);
+  }
 }

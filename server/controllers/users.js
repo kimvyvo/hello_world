@@ -29,5 +29,23 @@ module.exports = {
                 });
             }
         });
+    },
+    remove: function(req, res){
+        User.findOneAndRemove({_id: req.params.id}, function(err, user){
+            if(err){
+                console.log('Something went wrong when removing a user');
+                res.json({message: 'Error', error: err});
+            }else{
+                Session.findByIdAndUpdate({_id: req.params.sid}, {$pull: {users: {_id: req.params.id}}}, function(err, data) {
+                    if(err){
+                        console.log('Something went wrong when removing a user from session');
+                        res.json({message: 'Error', error: err});
+                    }else{
+                        console.log('came here', data);
+                        res.json({message: 'Success', data: data});
+                    }
+                });
+            }
+        });
     }
 }
