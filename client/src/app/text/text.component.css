@@ -13,9 +13,11 @@
 p {
     display: inline-block;
 }
+
 button{
     color:  #f8f9fa
 }
+
 .border-thicc{
     border: 2px solid black;
     border-top: none;

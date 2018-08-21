@@ -1,16 +1,14 @@
 <div class='row'>
   <div class='col'>
     <div id="chat_box" class='p-5'></div>
-    <div class='border-thicc p-0'>
-      <form id="input_form" (submit)="sendText()" class='col m-0'>
-        <div class='row text-center'>
-          <input type="text" [(ngModel)]="input_message" name="input_msg" class='col m-0 py-0 px-3'>
-          <button type="submit" class='col col-sm-2 py-3 m-0'>Send</button>
+    <form id="input_form" (submit)="sendText()" class='col m-0 p-0'>
+        <div class='row m-0 text-center'>
+          <input type="text" [(ngModel)]="input_message" name="input_msg" class='col border-thicc m-0 py-0 px-3' style='border-right: none'>
+          <button type="submit" class='col col-sm-4 py-3 m-0 border-thicc'>Send</button>
         </div>
     </form>
-    </div>
   </div>
-  <div class='col col-sm-4 mr-3'>
+  <div class='col'>
     <div id='chat_box' class='p-3'>Translation area</div>
     <button class='col bg-light text-dark border-thicc py-3'>download</button>
   </div>
