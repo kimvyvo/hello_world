@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +7,6 @@ import { Title } from '@angular/platform-browser';
 
 })
 export class AppComponent implements OnInit {
-  title = 'client';
-  constructor(
-    private _title: Title
-  ) {}
-
-  ngOnInit() {
-    // this._title.setTitle('Hello World!');
-  }
+  constructor() {}
+  ngOnInit() {}
 }

@@ -1,3 +1,5 @@
-<p>
-  text works!
-</p>
+<div id="chat_box"></div>
+<form id="input_form" (submit)="sendText()">
+  <input type="text" [(ngModel)]="input_message" name="input_msg">
+  <button type="submit">Send</button>
+</form>

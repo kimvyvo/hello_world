@@ -16,12 +16,23 @@ export class VideoComponent implements OnInit {
 
   ngOnInit() {
     this.displayVideo();
-    this.socket.emit('test_event', {msg: 'Plase work...'});
+    this.socket.on('receive_video', function(data) {
+      document.getElementById('received_videos').innerHTML +=
+        '<video id="received_video_'  + String(data.count) +  '" autoplay></video>';
+      console.log(document.getElementById('received_videos').innerHTML);
+      const video: HTMLMediaElement = (<HTMLMediaElement>document.getElementById('received_video_' + String(data.count)));
+      video.srcObject = data.video;
+      video.onloadedmetadata = function(e) {
+        video.play();
+      };
+    });
   }
   displayVideo() {
     navigator.mediaDevices.getUserMedia(this.mediaConstraints)
-    .then(function(mediaStream) {
-      const video = document.querySelector('video');
+    .then(mediaStream => {
+      const video: HTMLMediaElement = (<HTMLMediaElement>document.getElementById('local_video'));
+      video.muted = true;
+      // this.socket.emit('send_video', {video: mediaStream});
       video.srcObject = mediaStream;
       video.onloadedmetadata = function(e) {
         video.play();
@@ -31,4 +42,5 @@ export class VideoComponent implements OnInit {
       console.log('An error occured when streaming video. Details:', err);
     });
   }
+
 }

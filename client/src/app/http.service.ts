@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpService {
   constructor(private _http: HttpClient) {}
+  // Session Services
   getSessions() {
     return this._http.get('/sessions');
   }
@@ -21,7 +22,8 @@ export class HttpService {
   deleteSession(id) {
     return this._http.delete(`/sessions/${id}`);
   }
-  // addUser(id, new_user) {
-  //   return this._http.post(`/users/${id}`, new_user);
-  // }
+  // User Services
+  addUser(id, new_user) {
+    return this._http.post(`/users/${id}`, new_user);
+  }
 }

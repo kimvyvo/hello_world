@@ -1,5 +1,6 @@
-<p>
-  dashboard works!
-</p>
+<button [routerLink]="['/dashboard', selected_session, 'video']">video</button>
+<button [routerLink]="['/dashboard', selected_session, 'text']">text</button>
+<button [routerLink]="['/dashboard', selected_session, 'draw']">draw</button>
+<button [routerLink]="['/dashboard', selected_session, 'watch']">watch</button>
 
 <router-outlet></router-outlet>
