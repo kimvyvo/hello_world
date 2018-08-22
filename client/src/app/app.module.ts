@@ -16,6 +16,15 @@ import { ErrorComponent } from './error/error.component';
 import { HttpService } from './http.service';
 import { ShareService } from './share.service';
 
+import {
+    GoogleApiModule, 
+    GoogleApiService, 
+    GoogleAuthService, 
+    NgGapiClientConfig, 
+    NG_GAPI_CONFIG,
+    GoogleApiConfig
+} from "ng-gapi";
+
 @NgModule({
   declarations: [
     AppComponent,
