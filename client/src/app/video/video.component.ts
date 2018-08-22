@@ -3,8 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
 import { throwError as observableThrowError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { OpenVidu, StreamManager, Publisher, Subscriber, StreamEvent } from 'openvidu-browser';
 import { ShareService } from '../share.service';
+import { OpenVidu, Session, StreamManager, Publisher, Subscriber, StreamEvent } from 'openvidu-browser';
+import * as annyang from 'annyang';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-video',
@@ -12,7 +14,7 @@ import { ShareService } from '../share.service';
   styleUrls: ['./video.component.css']
 })
 export class VideoComponent implements OnInit {
-
+  speech_content = '';
   OPENVIDU_SERVER_URL = 'https://' + location.hostname + ':4443';
   OPENVIDU_SERVER_SECRET = 'MY_SECRET';
 
@@ -28,7 +30,8 @@ export class VideoComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private _shareService: ShareService,
-    private _route: ActivatedRoute) {
+    private _route: ActivatedRoute,
+    private _httpService: HttpService) {
   }
 
   @HostListener('window:beforeunload')
@@ -198,4 +201,33 @@ export class VideoComponent implements OnInit {
         });
     });
   }
+  startRecording() {
+    console.log('in here');
+    if (annyang) {
+      console.log('in anyang');
+      annyang.addCallback('result', (phrases) => {
+        this.speech_content = phrases[0];
+        console.log('Speech recognized. Possible sentences said:');
+        console.log(phrases);
+      });
+      // var commands = {
+      //     'Hello': function() {
+      //         alert('Hi! I can hear you.');
+      //     }
+      // };
+      // annyang.addCommands(commands);
+      annyang.start();
+
+    }
+  }
+  stopRecording() {
+    console.log('stopped');
+    annyang.pause();
+    const curr_time = new Date();
+    this._httpService.all_content.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
+    this.speech_content = '';
+
+  }
+
+
 }

@@ -10,6 +10,7 @@ import * as io from 'socket.io-client';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  all_translations = [];
   socket: SocketIOClient.Socket;
   selected_session = '';
   constructor(
@@ -25,6 +26,7 @@ export class DashboardComponent implements OnInit {
       this._shareService.setSocket(this.socket);
       this.socket.emit('new_user', {id: this._shareService.my_user_id, sid: params.id});
     });
+    this.all_translations = this._httpService.all_content;
   }
   leaveSite() {
     this.socket.disconnect();
