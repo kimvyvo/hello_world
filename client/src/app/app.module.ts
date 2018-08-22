@@ -15,6 +15,8 @@ import { ErrorComponent } from './error/error.component';
 
 import { HttpService } from './http.service';
 import { ShareService } from './share.service';
+import { UserVideoComponent } from './video/user-video/user-video.component';
+import { OvVideoComponent } from './video/ov-video/ov-video.component';
 
 import {
     GoogleApiModule, 
@@ -34,7 +36,9 @@ import {
     TextComponent,
     DrawComponent,
     WatchComponent,
-    ErrorComponent
+    ErrorComponent,
+    UserVideoComponent,
+    OvVideoComponent
   ],
   imports: [
     BrowserModule,

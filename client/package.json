@@ -22,9 +22,13 @@
     "@angular/router": "^6.1.0",
     "@types/socket.io-client": "^1.4.32",
     "core-js": "^2.5.4",
+<<<<<<< HEAD
     "install": "^0.12.1",
     "ng-gapi": "0.0.51",
     "npm": "^6.4.0",
+=======
+    "openvidu-browser": "^2.4.0",
+>>>>>>> b4b16a43b2dd988179c465a7e85dcb99a2da27cf
     "rxjs": "^6.0.0",
     "socket.io-client": "^2.1.1",
     "zone.js": "~0.8.26"
