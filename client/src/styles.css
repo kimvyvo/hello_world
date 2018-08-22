@@ -21,13 +21,13 @@ div, p{
 div#white{
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(60deg, #f8f9fa 50%, rgba(0,0,0,0) 50%);
+    background: linear-gradient(120deg, #f8f9fa 50%, rgba(0,0,0,0) 50%);
 }
 div#blue{
     height: 100vh;
     width: 100vw;
     overflow-y: scroll;
-    background: linear-gradient(90deg, #cce0e9, #eceaca);
+    background: linear-gradient(90deg, #f8f9fa, #cce0e9);
     background-size: 400% 400%;
     
     -webkit-animation: AnimationName 8s ease infinite;

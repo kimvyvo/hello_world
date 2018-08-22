@@ -1,3 +1,17 @@
 button{
     color:  #f8f9fa
 }
+button#leave{
+    background: #cbdfe9;
+    color: #48809c;
+}
+.border-thicc{
+    border: 2px solid black;
+    border-top: none;
+}
+#chat_box {
+    height: 80vh;
+    border: 2px solid black;
+    overflow-y: auto;
+    white-space: wrap;
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-watch',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./watch.component.css']
 })
 export class WatchComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor(
+    private _httpService: HttpService,
+    private _route: ActivatedRoute
+  ) { }
+  ngOnInit() { }
+  
+  
 }
