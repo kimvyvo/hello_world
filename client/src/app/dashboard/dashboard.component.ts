@@ -28,6 +28,13 @@ export class DashboardComponent implements OnInit {
   }
   leaveSite() {
     this.socket.disconnect();
+    if (this._shareService.session) { this._shareService.session.disconnect(); }
+
+    // Empty all properties...
+    this._shareService.subscribers = [];
+    delete this._shareService.publisher;
+    delete this._shareService.session;
+    delete this._shareService.OV;
     this._router.navigate(['/']);
   }
   // leaveSite() {
