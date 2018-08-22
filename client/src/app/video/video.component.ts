@@ -2,6 +2,7 @@ import { Component, HostListener, Input, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError as observableThrowError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ShareService } from '../share.service';
 import { OpenVidu, Session, StreamManager, Publisher, Subscriber, StreamEvent } from 'openvidu-browser';
 
 @Component({
