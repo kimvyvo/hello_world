@@ -4,6 +4,7 @@ import { throwError as observableThrowError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ShareService } from '../share.service';
 import { OpenVidu, Session, StreamManager, Publisher, Subscriber, StreamEvent } from 'openvidu-browser';
+import * as annyang from 'annyang';
 
 @Component({
   selector: 'app-video',
@@ -220,4 +221,33 @@ export class VideoComponent implements OnDestroy {
         });
     });
   }
+  startRecording() {
+    console.log("in here")
+    if (annyang) {
+      console.log('in anyang')
+      
+      annyang.addCallback('result', (phrases) => {
+        console.log('Speech recognized. Possible sentences said:');
+        console.log(phrases);
+      });
+      var commands = {
+          'Hello': function() {
+              alert('Hi! I can hear you.');
+          }
+      };
+      annyang.addCommands(commands);
+      annyang.start(); 
+
+    }
+  }
+  stopRecording() {
+    console.log("stopped")
+    annyang.pause();
+    var curr_time = new Date();
+    // this.all_content.push([this.content, curr_time.getHours() + ':' + curr_time.getMinutes()])
+    // console.log("stopped recording")
+
+  }
+
+
 }
