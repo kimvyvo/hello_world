@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { ShareService } from '../share.service';
 import { OpenVidu, Session, StreamManager, Publisher, Subscriber, StreamEvent } from 'openvidu-browser';
 import * as annyang from 'annyang';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-video',
@@ -12,7 +13,7 @@ import * as annyang from 'annyang';
   styleUrls: ['./video.component.css']
 })
 export class VideoComponent implements OnDestroy {
-
+  speech_content = '';
   OPENVIDU_SERVER_URL = 'https://' + location.hostname + ':4443';
   OPENVIDU_SERVER_SECRET = 'MY_SECRET';
   // OpenVidu objects
@@ -29,7 +30,7 @@ export class VideoComponent implements OnDestroy {
   // updated by an Output event of UserVideoComponent children
   @Input() mainStreamManager: StreamManager;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private _httpService: HttpService) {
     this.generateParticipantInfo();
   }
 
@@ -227,15 +228,16 @@ export class VideoComponent implements OnDestroy {
       console.log('in anyang')
       
       annyang.addCallback('result', (phrases) => {
+        this.speech_content = phrases[0];
         console.log('Speech recognized. Possible sentences said:');
         console.log(phrases);
       });
-      var commands = {
-          'Hello': function() {
-              alert('Hi! I can hear you.');
-          }
-      };
-      annyang.addCommands(commands);
+      // var commands = {
+      //     'Hello': function() {
+      //         alert('Hi! I can hear you.');
+      //     }
+      // };
+      // annyang.addCommands(commands);
       annyang.start(); 
 
     }
@@ -244,8 +246,8 @@ export class VideoComponent implements OnDestroy {
     console.log("stopped")
     annyang.pause();
     var curr_time = new Date();
-    // this.all_content.push([this.content, curr_time.getHours() + ':' + curr_time.getMinutes()])
-    // console.log("stopped recording")
+    this._httpService.all_content.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()])
+    this.speech_content = '';
 
   }
 
