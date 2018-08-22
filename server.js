@@ -13,16 +13,42 @@ app.all("*", (request ,response ,next) => {
     response.sendFile(path.resolve("./client/dist/client/index.html"))
 });
 
-let connected_counter = 0;
 // const video_srcs = [];
 io.on('connection', function(socket) {
     console.log('Connection established!');
 
-    socket.on('connect', function(){
-        connected_counter++;
+    socket.on('new_user', function(data){
+        console.log('Socket connect')
+        socket.id = data.id;
+        socket.sid = data.sid;
     });
     socket.on('disconnect', function(){
-        connected_counter--;
+        console.log('Socket disconnect');
+        User.findOneAndRemove({_id: socket.id}, function(err){
+            if(err){
+                console.log('Something went wrong when removing a user', err);
+            }else{
+                Session.findByIdAndUpdate({_id: socket.sid}, {$pull: {users: {_id: socket.id}}}, function(err, data) {
+                    if(err){
+                        console.log('Something went wrong when removing a user from session', err);
+                    }else{
+                        Session.findOne({_id: socket.sid}, function(err, session){
+                            if(err){
+                                console.log('Something went wrong when getting a single session');
+                            }else{
+                                if(session.users.length === 0){
+                                    Session.findOneAndRemove({_id: socket.sid}, function(err){
+                                        if(err){
+                                            console.log('Something went wrong when removing a session');
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
     });
     socket.on('init_text', function(){
         socket.emit('receive_text');
