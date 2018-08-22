@@ -18,15 +18,6 @@ import { ShareService } from './share.service';
 import { UserVideoComponent } from './video/user-video/user-video.component';
 import { OvVideoComponent } from './video/ov-video/ov-video.component';
 
-import {
-    GoogleApiModule, 
-    GoogleApiService, 
-    GoogleAuthService, 
-    NgGapiClientConfig, 
-    NG_GAPI_CONFIG,
-    GoogleApiConfig
-} from "ng-gapi";
-
 @NgModule({
   declarations: [
     AppComponent,
