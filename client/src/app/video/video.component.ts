@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
 import { throwError as observableThrowError, Observable } from 'rxjs';
@@ -13,7 +13,7 @@ import { HttpService } from '../http.service';
   templateUrl: './video.component.html',
   styleUrls: ['./video.component.css']
 })
-export class VideoComponent implements OnInit {
+export class VideoComponent implements OnInit, OnDestroy {
   speech_content = '';
   OPENVIDU_SERVER_URL = 'https://' + location.hostname + ':4443';
   OPENVIDU_SERVER_SECRET = 'MY_SECRET';
@@ -49,6 +49,17 @@ export class VideoComponent implements OnInit {
       this.myUserName = this._shareService.my_user_name;
       this.joinSession();
     });
+  }
+
+  @HostListener('window:beforeunload')
+  beforeunloadHandler() {
+    // On window closed leave session
+    this.leaveSession();
+  }
+
+  ngOnDestroy() {
+    // On component destroyed leave session
+    this.leaveSession();
   }
 
   joinSession() {
@@ -117,6 +128,19 @@ export class VideoComponent implements OnInit {
           console.log('There was an error connecting to the session:', error.code, error.message);
         });
     });
+  }
+
+  leaveSession() {
+
+    // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
+
+    if (this.session) { this.session.disconnect(); }
+
+    // Empty all properties...
+    this.subscribers = [];
+    delete this.publisher;
+    delete this.session;
+    delete this.OV;
   }
 
   private deleteSubscriber(streamManager: StreamManager): void {
