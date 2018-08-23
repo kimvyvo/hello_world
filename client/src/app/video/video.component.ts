@@ -15,6 +15,7 @@ import { HttpService } from '../http.service';
 })
 export class VideoComponent implements OnInit, OnDestroy {
   speech_content = '';
+  lang_setting = {'lang_spoken': 'ko', 'lang_to': 'ko-KR'};
   OPENVIDU_SERVER_URL = 'https://' + location.hostname + ':4443';
   OPENVIDU_SERVER_SECRET = 'MY_SECRET';
 
@@ -26,6 +27,90 @@ export class VideoComponent implements OnInit, OnDestroy {
   // Join form
   mySessionId: string;
   myUserName: string;
+  lang_list = [['Afrikaans', 'af'],
+  ['Arabic (Egypt)', 'ar-EG'],
+  ['Arabic (Jordan)', 'ar-JO'],
+  ['Arabic (Kuwait)', 'ar-KW'],
+  ['Arabic (Lebanon)', 'ar-LB'],
+  ['Arabic (Qatar)', 'ar-QA'],
+  ['Arabic (UAE) ', 'ar-AE'],
+  ['Arabic (Morocco)', 'ar-MA'],
+  ['Arabic (Iraq)', 'ar-IQ'],
+  ['Arabic (Algeria)', 'ar-DZ'],
+  ['Arabic (Bahrain)', 'ar-BH'],
+  ['Arabic (Lybia)', 'ar-LY'],
+  ['Arabic (Oman)', 'ar-OM'],
+  ['Arabic (Saudi Arabia)', 'ar-SA'],
+  ['Arabic (Tunisia)', 'ar-TN'],
+  ['Arabic (Yemen) ', 'ar-YE'],
+  ['Basque', 'eu'],
+  ['Bulgarian', 'bg'],
+  ['Catalan', 'ca'],
+  ['Chinese (Mandarin)', 'zh-CN'],
+  ['Chinese(Traditional Taiwan)', 'zh-TW'],
+  ['Chinese (Simplified Hong Kong)', 'zh-HK'],
+  ['Chinese (Yue: Traditional Hong Kong)', 'zh-yue'],
+  ['Malaysian', 'zh-CN'],
+  ['Chinese(Traditional Taiwan)', 'zh-TW'],
+  ['Chinese (Simplified Hong Kong)', 'zh-HK'],
+  ['Chinese (Yue: Traditional Hong Kong)', 'zh-yue'],
+  ['Czech', 'cs'],
+  ['Dutch', 'nl-NL'],
+  ['English (Australia)', 'en-AU'],
+  ['English (Canada)', 'en-CA'],
+  ['English (India)', 'en-IN'],
+  ['English(New Zealand)', 'en-NZ'],
+  ['English(South Africa)', 'en-ZA'],
+  ['English(United Kingdom)', 'en-GB'],
+  ['English(United States)', 'en-US'],
+  ['Finnish', 'fi'],
+  ['French', 'fr-FR'],
+  ['Galician', 'gl'],
+  ['German', 'de-DE'],
+  ['Greek', 'el-GR'],
+  ['Hebrew', 'he'],
+  ['Hungarian', 'hu'],
+  ['Icelandic', 'is'],
+  ['Italian', 'it-IT'],
+  ['Japanese', 'ja'],
+  ['Korean', 'ko'],
+  ['Latin', 'la'],
+  ['Malaysian', 'ms-MY'],
+  ['Norwegian', 'no-NO'],
+  ['Polish', 'pl'],
+  ['Portuguese', 'pt-PT'],
+  ['Portuguese (Brasil) ', 'pt-BR'],
+  ['Romanian', 'ro-RO'],
+  ['Russian', 'ru'],
+  ['Serbian', 'sr-SP'],
+  ['Slovak', 'sk'],
+  ['Spanish(Argentina)', 'es-AR'],
+  ['Spanish(Bolivia)', 'es-BO'],
+  ['Spanish(Chile)', 'es-CL'],
+  ['Spanish(Colombia)', 'es-CO'],
+  ['Spanish(Costa Rica)', 'es-CR'],
+  ['Spanish(Dominican Republic)', 'es-DO'],
+  ['Spanish(Ecuador)', 'es-EC'],
+  ['Spanish(El Salvador)', 'es-SV'],
+  ['Spanish(Guatemala)', 'es-GT'],
+  ['Spanish(Honduras)', 'es-HN'],
+  ['Spanish(Mexico)', 'es-MX'],
+  ['Spanish(Nicaragua)', 'es-NI'],
+  ['Spanish(Panama)', 'es-PA'],
+  ['Spanish(Paraguay)', 'es-PY'],
+  ['Spanish(Peru)', 'es-PE'],
+  ['Spanish(Puerto Rico)', 'es-PR'],
+  ['Spanish(Spain)', 'es-ES'],
+  ['Spanish(US)', 'es-US'],
+  ['Spanish(Uruguay)', 'es-UY'],
+  ['Spanish(Venezuela)', 'es-VE'],
+  ['Swedish', 'sv-SE'],
+  ['Turkish', 'tr-TR'],
+  ['Zulu', 'zu']];
+
+  google_lang_list = [
+
+  ];
 
   // Main video of the page, will be 'publisher' or one of the 'subscribers',
   // updated by an Output event of UserVideoComponent children
@@ -42,6 +127,7 @@ export class VideoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._route.parent.params.subscribe((params: Params) => {
+      console.log(this.OPENVIDU_SERVER_URL);
       this.session = this.session;
       this.publisher = this.publisher;
       this.subscribers = this.subscribers;
@@ -234,10 +320,11 @@ export class VideoComponent implements OnInit, OnDestroy {
   startRecording() {
     console.log('in here');
     if (annyang) {
+      annyang.start({ autoRestart: true, continuous: false });
+      // annyang.setLanguage('ko');
       console.log('in anyang');
       annyang.addCallback('result', (phrases) => {
         this.speech_content = phrases[0];
-        console.log('Speech recognized. Possible sentences said:');
         console.log(phrases);
       });
       // var commands = {
@@ -246,7 +333,6 @@ export class VideoComponent implements OnInit, OnDestroy {
       //     }
       // };
       // annyang.addCommands(commands);
-      annyang.start();
 
     }
   }
@@ -256,7 +342,6 @@ export class VideoComponent implements OnInit, OnDestroy {
     const curr_time = new Date();
     this._httpService.all_content.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
     this.speech_content = '';
-
   }
 
 

@@ -4,9 +4,9 @@
     <div id="session-header">
       <h2 id="session-title">Session id: {{mySessionId}}</h2>
     </div>
-    <div *ngIf="mainStreamManager" id="main-video" class="col-md-6">
+    <!-- <div *ngIf="mainStreamManager" id="main-video" class="col-md-6">
       <app-user-video [streamManager]="mainStreamManager"></app-user-video>
-    </div>
+    </div> -->
     <div id="video-container" class="col-md-6">
       <div *ngIf="publisher" class="stream-container col-md-6 col-xs-6">
         <app-user-video [streamManager]="publisher" (clicked)="updateMainStreamManager(publisher)"></app-user-video>
@@ -16,8 +16,19 @@
       </div>
     </div>
   </div>
+  {{speech_content}}
+  <button (mousedown)="startRecording()" (mouseup)="stopRecording()">Click to start, release to stop</button><br>
+  <label for="lang_spoken">Language Spoken: </label>
+  <select name="lang_spoken" [(ngModel)]="lang_setting.lang_spoken">
+    <option *ngFor="let lang of lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
+  </select><br>
+  <label for="lang_to">Translate to: </label>
+  <select name="lang_to" [(ngModel)]="lang_setting.lang_to">
+    <option *ngFor="let lang of lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
+  </select>
+  {{lang_setting | json }}
 
 </div>
-
+<!-- 
 {{speech_content}}
-<button (mousedown)="startRecording()" (mouseup)="stopRecording()">Click to start, release to stop</button>
+<button (mousedown)="startRecording()" (mouseup)="stopRecording()">Click to start, release to stop</button> -->
