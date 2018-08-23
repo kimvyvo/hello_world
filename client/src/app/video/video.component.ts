@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { ShareService } from '../share.service';
 import { OpenVidu, Session, StreamManager, Publisher, Subscriber, StreamEvent } from 'openvidu-browser';
 import * as annyang from 'annyang';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 import { HttpService } from '../http.service';
 
 @Component({
@@ -15,7 +16,8 @@ import { HttpService } from '../http.service';
 })
 export class VideoComponent implements OnInit, OnDestroy {
   speech_content = '';
-  lang_setting = {'lang_spoken': 'ko', 'lang_to': 'ko-KR'};
+  lang_setting = {'lang_spoken': 'ko', 'lang_to': 'en'};
+  is_recording = true;
   OPENVIDU_SERVER_URL = 'https://' + location.hostname + ':4443';
   OPENVIDU_SERVER_SECRET = 'MY_SECRET';
 
@@ -47,9 +49,6 @@ export class VideoComponent implements OnInit, OnDestroy {
   ['Bulgarian', 'bg'],
   ['Catalan', 'ca'],
   ['Chinese (Mandarin)', 'zh-CN'],
-  ['Chinese(Traditional Taiwan)', 'zh-TW'],
-  ['Chinese (Simplified Hong Kong)', 'zh-HK'],
-  ['Chinese (Yue: Traditional Hong Kong)', 'zh-yue'],
   ['Malaysian', 'zh-CN'],
   ['Chinese(Traditional Taiwan)', 'zh-TW'],
   ['Chinese (Simplified Hong Kong)', 'zh-HK'],
@@ -158,10 +157,10 @@ export class VideoComponent implements OnInit, OnDestroy {
     private httpClient: HttpClient,
     private _route: ActivatedRoute,
     private _shareService: ShareService,
-    private _httpService: HttpService) {
+    private _dashboard: DashboardComponent,
+    private _httpService: HttpService
+    ) {
   }
-
-  @HostListener('window:beforeunload')
 
   ngOnInit() {
     this._route.parent.params.subscribe((params: Params) => {
@@ -358,13 +357,36 @@ export class VideoComponent implements OnInit, OnDestroy {
   startRecording() {
     console.log('in here');
     if (annyang) {
-      annyang.start({ autoRestart: true, continuous: false });
-      // annyang.setLanguage('ko');
-      console.log('in anyang');
+      annyang.start();
+      annyang.setLanguage('ko');
+      // console.log(this.lang_setting.lang_spoken);
+      // console.log('in anyang');
       annyang.addCallback('result', (phrases) => {
-        this.speech_content = phrases[0];
         console.log(phrases);
+        
       });
+    // if (annyang) {
+    //   annyang.start();
+    //   annyang.setLanguage('zh-TW');
+    //   console.log(this.lang_setting.lang_spoken);
+    //   console.log('in anyang');
+    //   annyang.addCallback('result', (phrases) => {
+    //     console.log("in the function", phrases)
+    //     this.speech_content = phrases[0];
+    //     if (this.is_recording == false) {
+    //       annyang.pause();
+    //       const curr_time = new Date();
+    //       var source_lang = this.lang_setting.lang_spoken.split('-')[0];
+    //       let input_word = encodeURI(this.speech_content);
+    //       let observable = this._httpService.getTranslation(input_word,source_lang,this.lang_setting.lang_to);
+    //       observable.subscribe(data=> {
+    //         console.log(data);
+    //       });
+    //       // this._dashboard.all_translations.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
+    //       // this.speech_content = '';
+    //       this.is_recording = true;
+    //     } 
+    //   });
       // var commands = {
       //     'Hello': function() {
       //         alert('Hi! I can hear you.');
@@ -375,11 +397,8 @@ export class VideoComponent implements OnInit, OnDestroy {
     }
   }
   stopRecording() {
+    // this.is_recording = false;
     console.log('stopped');
-    annyang.pause();
-    const curr_time = new Date();
-    this._httpService.all_content.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
-    this.speech_content = '';
   }
 
 

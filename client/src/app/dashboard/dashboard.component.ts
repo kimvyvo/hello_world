@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpService } from '../http.service';
 import { ShareService } from '../share.service';
@@ -20,18 +20,25 @@ export class DashboardComponent implements OnInit {
     private _shareService: ShareService
   ) { this.socket = io.connect(); }
 
+  @HostListener('window:beforeunload')
+  beforeunloadHandler() {
+    this.leaveSite();
+  }
+
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
       this.selected_session = params.id;
       this._shareService.setSocket(this.socket);
       this.socket.emit('new_user', {id: this._shareService.my_user_id, sid: params.id});
+      console.log(this._shareService.my_user_id);
     });
-    this.all_translations = this._httpService.all_content;
   }
+
   leaveSite() {
     this.socket.disconnect();
     this._router.navigate(['/']);
   }
+
   // leaveSite() {
   //   const observable = this._httpService.deleteUser(this._shareService.my_user_id, this.selected_session);
   //   observable.subscribe((data: any) => {
@@ -43,10 +50,10 @@ export class DashboardComponent implements OnInit {
   //         const observable3 = this._httpService.deleteSession(this.selected_session);
   //         observable3.subscribe((data3: any) => {
   //           console.log('Deleted a session. Result:', data3);
-  //           this._router.navigate(['/']);
+  //           this.socket.disconnect();
   //         });
   //       } else {
-  //         this._router.navigate(['/']);
+  //         this.socket.disconnect();
   //       }
   //     });
   //   });

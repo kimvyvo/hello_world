@@ -8,14 +8,11 @@
   <select name="lang_spoken" [(ngModel)]="lang_setting.lang_spoken" class='col-sm-5'>
     <option *ngFor="let lang of lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
   </select><br>
-  <label for="lang_to" class='col-sm-5 text-right'>Translate to: </label>
-  <select name="lang_to" [(ngModel)]="lang_setting.lang_to" class='col-sm-5'>
-    <option *ngFor="let lang of lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
-  </select><br>
-
-  <!-- 
-  {{speech_content}}
-  <button (mousedown)="startRecording()" (mouseup)="stopRecording()">Click to start, release to stop</button> -->
+  <label for="lang_to">Translate to: </label>
+  <select name="lang_to" [(ngModel)]="lang_setting.lang_to">
+    <option *ngFor="let lang of google_lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
+  </select>
+  {{lang_setting | json }}
 
   <div id="main-container" class="container">
     <div id="session" class='text-center'>
