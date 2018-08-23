@@ -1,0 +1,7 @@
+<div class='pt-2 m-0' style='background:black'>
+  <youtube-player
+  [videoId]="id" 
+  (ready)="savePlayer($event)"
+  (change)="onStateChange($event)">
+  </youtube-player>
+</div>
