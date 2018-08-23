@@ -15,7 +15,7 @@ import { HttpService } from '../http.service';
 })
 export class VideoComponent implements OnInit, OnDestroy {
   speech_content = '';
-  lang_setting = {'lang_spoken': 'en-US', 'lang_to': 'ko-KR'};
+  lang_setting = {'lang_spoken': 'ko', 'lang_to': 'ko-KR'};
   OPENVIDU_SERVER_URL = 'https://' + location.hostname + ':4443';
   OPENVIDU_SERVER_SECRET = 'MY_SECRET';
 
@@ -27,12 +27,35 @@ export class VideoComponent implements OnInit, OnDestroy {
   // Join form
   mySessionId: string;
   myUserName: string;
-  lang_list = [['Afrikaans', 'af-ZA', ],
-  ['Bahasa Indonesia','id-ID'],
-  ['Bahasa Melayu',   'ms-MY'],
-  ['Català',          'ca-ES'],
-  ['Čeština',         'cs-CZ'],
-  ['Deutsch',         'de-DE'],
+  lang_list = [['Afrikaans', 'af'],
+  ['Arabic (Egypt)','ar-EG'],
+  ['Arabic (Jordan)', 'ar-JO'],
+  ['Arabic (Kuwait)','ar-KW'],
+  ['Arabic (Lebanon)','ar-LB'],
+  ['Arabic (Qatar)','ar-QA'],
+  ['Arabic (UAE) ','ar-AE'],
+  ['Arabic (Morocco)','ar-MA'],
+  ['Arabic (Iraq)','ar-IQ'],
+  ['Arabic (Algeria)','ar-DZ'],
+  ['Arabic (Bahrain)','ar-BH'],
+  ['Arabic (Lybia)','ar-LY'],
+  ['Arabic (Oman)','ar-OM'],
+  ['Arabic (Saudi Arabia)','ar-SA'],
+  ['Arabic (Tunisia)','ar-TN'],
+  ['Arabic (Yemen) ','ar-YE'],
+  ['Basque','eu'],
+  ['Bulgarian','bg'],
+  ['Catalan', 'ca'],
+  ['Chinese (Mandarin)','zh-CN'],
+  ['Chinese(Traditional Taiwan)', 'zh-TW'],
+  ['Chinese (Simplified Hong Kong)', 'zh-HK'],
+  ['Chinese (Yue: Traditional Hong Kong)', 'zh-yue'],
+  ['Malaysian','zh-CN'],
+  ['Chinese(Traditional Taiwan)', 'zh-TW'],
+  ['Chinese (Simplified Hong Kong)', 'zh-HK'],
+  ['Chinese (Yue: Traditional Hong Kong)', 'zh-yue'],
+  ['Czech','cs'],
+  ['Dutch','nl-NL'],
   ['English (Australia)', 'en-AU'],
   ['English (Canada)', 'en-CA'],
   ['English (India)', 'en-IN'],
@@ -40,54 +63,50 @@ export class VideoComponent implements OnInit, OnDestroy {
   ['English(South Africa)', 'en-ZA'],
   ['English(United Kingdom)', 'en-GB'],
   ['English(United States)', 'en-US'],
-  ['Español(Argentina)', 'es-AR'],
-  ['Español(Bolivia)', 'es-BO'],
-  ['Español(Chile)', 'es-CL'],
-  ['Español(Colombia)', 'es-CR'],
-  ['Español(Ecuador)', 'es-EC'],
-  ['Español(El Salvador)', 'es-SV'],
-  ['Español(España)', 'es-ES'],
-  ['Español(Estados Unidos)', 'es-US'],
-  ['Español(Guatemala)', 'es-GT'],
-  ['Español(Honduras)', 'es-HN'],
-  ['Español(México)', 'es-MX'],
-  ['Español(Nicaragua)', 'es-NI'],
-  ['Español(Panamá)', 'es-PA'],
-  ['Español(Paraguay)', 'es-PY'],
-  ['Español(Perú)', 'es-PE'],
-  ['Español(Puerto Rico)', 'es-PR'],
-  ['Español(República Dominicana)', 'es-DO'],
-  ['Español(Uruguay)', 'es-UY'],
-  ['Español(Venezuela)', 'es-VE'],
-  ['Euskara',         'eu-ES'],
-  ['Français',        'fr-FR'],
-  ['Galego',          'gl-ES'],
-  ['Hrvatski',        'hr_HR'],
-  ['IsiZulu',         'zu-ZA'],
-  ['Íslenska',        'is-IS'],
-  ['Italiano(Italia)','it-IT'],
-  ['Italiano(Svizzera)','it-CH'],
-  ['Magyar',          'hu-HU'],
-  ['Nederlands',      'nl-NL'],
-  ['Norsk bokmål',    'nb-NO'],
-  ['Polski',          'pl-PL'],
-  ['Português(Brasil)', 'pt-BR'],
-  ['Português(Portugal)', 'pt-PT'],
-  ['Română',          'ro-RO'],
-  ['Slovenčina',      'sk-SK'],
-  ['Suomi',           'fi-FI'],
-  ['Svenska',         'sv-SE'],
-  ['Türkçe',          'tr-TR'],
-  ['български',       'bg-BG'],
-  ['Pусский',         'ru-RU'],
-  ['Српски',          'sr-RS'],
-  ['한국어',            'ko-KR'],
-  ['中文 (普通话 (中国大陆))', 'cmn-Hans-CN'],
-  ['中文 (普通话 (香港))', 'cmn-Hans-HK'],
-  ['中文 (中文 (台灣))', 'cmn-Hant-TW'],
-  ['中文 (粵語 (香港))', 'yue-Hant-HK'],
-  ['日本語',           'ja-JP'],
-  ['Lingua latīna',   'la']];
+  ['Finnish', 'fi'],
+  ['French', 'fr-FR'],
+  ['Galician', 'gl'],
+  ['German', 'de-DE'],
+  ['Greek', 'el-GR'],
+  ['Hebrew', 'he'],
+  ['Hungarian', 'hu'],
+  ['Icelandic', 'is'],
+  ['Italian', 'it-IT'],
+  ['Japanese', 'ja'],
+  ['Korean', 'ko'],
+  ['Latin', 'la'],
+  ['Malaysian','ms-MY'],
+  ['Norwegian', 'no-NO'],
+  ['Polish', 'pl'],
+  ['Portuguese', 'pt-PT'],
+  ['Portuguese (Brasil) ', 'pt-BR'],
+  ['Romanian', 'ro-RO'],
+  ['Russian','ru'],
+  ['Serbian', 'sr-SP'],
+  ['Slovak', 'sk'],
+  ['Spanish(Argentina)', 'es-AR'],
+  ['Spanish(Bolivia)', 'es-BO'],
+  ['Spanish(Chile)', 'es-CL'],
+  ['Spanish(Colombia)', 'es-CO'],
+  ['Spanish(Costa Rica)', 'es-CR'],
+  ['Spanish(Dominican Republic)', 'es-DO'],
+  ['Spanish(Ecuador)', 'es-EC'],
+  ['Spanish(El Salvador)','es-SV'],
+  ['Spanish(Guatemala)','es-GT'],
+  ['Spanish(Honduras)','es-HN'],
+  ['Spanish(Mexico)','es-MX'],
+  ['Spanish(Nicaragua)','es-NI'],
+  ['Spanish(Panama)','es-PA'],
+  ['Spanish(Paraguay)','es-PY'],
+  ['Spanish(Peru)','es-PE'],
+  ['Spanish(Puerto Rico)','es-PR'],
+  ['Spanish(Spain)','es-ES'],
+  ['Spanish(US)','es-US'],
+  ['Spanish(Uruguay)','es-UY'],
+  ['Spanish(Venezuela)','es-VE'],
+  ['Swedish','sv-SE'],
+  ['Turkish','tr-TR'],
+  ['Zulu','zu']];
 
   google_lang_list = [
     
@@ -300,6 +319,8 @@ export class VideoComponent implements OnInit, OnDestroy {
   startRecording() {
     console.log('in here');
     if (annyang) {
+      annyang.start({ autoRestart: true, continuous: false });
+      // annyang.setLanguage('ko');
       console.log('in anyang');
       annyang.addCallback('result', (phrases) => {
         this.speech_content = phrases[0];
@@ -311,7 +332,6 @@ export class VideoComponent implements OnInit, OnDestroy {
       //     }
       // };
       // annyang.addCommands(commands);
-      annyang.start();
 
     }
   }
