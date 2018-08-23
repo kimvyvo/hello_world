@@ -1,5 +1,5 @@
 #chat_box {
-    height: 80vh;
+    height: 75vh;
     border: 2px solid black;
     overflow-y: auto;
     white-space: wrap;
