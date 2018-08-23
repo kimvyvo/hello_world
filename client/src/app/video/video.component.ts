@@ -109,7 +109,45 @@ export class VideoComponent implements OnInit, OnDestroy {
   ['Zulu','zu']];
 
   google_lang_list = [
-    
+    ['Afrikaans',	'af'],
+    ['Albanian', 'sq'],
+    ['Arabic', 'ar'],
+    ['Azerbaijani', 'az'],
+    ['Basque','eu'],
+    ['Bengali',	'bn'],
+    ['Belarusian', 'be'],
+    ['Bulgarian','bg'],
+    ['Catalan','ca'],
+    ['Chinese Simplified','zh-CN'],
+    ['Chinese Traditional','zh-TW'],
+    ['Croatian','hr'],
+    ['Czech','cs'],
+    ['Danish','da'],
+    ['Dutch',	'nl'],
+    ['English',	'en'],
+    ['Esperanto','eo'],
+    ['Estonian','et'],
+    ['Filipino','tl'],
+    ['Finnish','fi'],
+    ['French','fr'],
+    ['Galician',	'gl'],
+    ['Georgian',	'ka'],
+    ['German','de'],
+    ['Greek','el'],
+    ['Gujarati','gu'],
+    ['Haitian Creole','ht'],
+    ['Hebrew','iw'],
+    ['Hindi','hi'],
+    ['Hungarian','hu'],
+    ['Icelandic','is'],
+    ['Indonesian','id'],
+    ['Irish',	'ga'],
+    ['Italian', 'it'],
+    ['Japanese','ja'],
+    ['Kannada','kn'],
+    ['Korean','ko'],
+    ['Latin', 'la']
+
   ]
 
   // Main video of the page, will be 'publisher' or one of the 'subscribers',
