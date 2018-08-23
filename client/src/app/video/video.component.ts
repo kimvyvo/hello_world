@@ -1,20 +1,23 @@
-import { Component, HostListener, Input, OnDestroy } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ActivatedRoute, Params } from '@angular/router';
 import { throwError as observableThrowError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ShareService } from '../share.service';
 import { OpenVidu, Session, StreamManager, Publisher, Subscriber, StreamEvent } from 'openvidu-browser';
+import * as annyang from 'annyang';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
   styleUrls: ['./video.component.css']
 })
-export class VideoComponent implements OnDestroy {
-
+export class VideoComponent implements OnInit {
+  speech_content = '';
   OPENVIDU_SERVER_URL = 'https://' + location.hostname + ':4443';
   OPENVIDU_SERVER_SECRET = 'MY_SECRET';
-  // OpenVidu objects
+
   OV: OpenVidu;
   session: Session;
   publisher: StreamManager; // Local
@@ -28,19 +31,24 @@ export class VideoComponent implements OnDestroy {
   // updated by an Output event of UserVideoComponent children
   @Input() mainStreamManager: StreamManager;
 
-  constructor(private httpClient: HttpClient) {
-    this.generateParticipantInfo();
+  constructor(
+    private httpClient: HttpClient,
+    private _route: ActivatedRoute,
+    private _shareService: ShareService,
+    private _httpService: HttpService) {
   }
 
   @HostListener('window:beforeunload')
-  beforeunloadHandler() {
-    // On window closed leave session
-    this.leaveSession();
-  }
 
-  ngOnDestroy() {
-    // On component destroyed leave session
-    this.leaveSession();
+  ngOnInit() {
+    this._route.parent.params.subscribe((params: Params) => {
+      this.session = this.session;
+      this.publisher = this.publisher;
+      this.subscribers = this.subscribers;
+      this.mySessionId = params.id;
+      this.myUserName = this._shareService.my_user_name;
+      this.joinSession();
+    });
   }
 
   joinSession() {
@@ -109,27 +117,6 @@ export class VideoComponent implements OnDestroy {
           console.log('There was an error connecting to the session:', error.code, error.message);
         });
     });
-  }
-
-  leaveSession() {
-
-    // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
-
-    if (this.session) { this.session.disconnect(); }
-
-    // Empty all properties...
-    this.subscribers = [];
-    delete this.publisher;
-    delete this.session;
-    delete this.OV;
-    this.generateParticipantInfo();
-  }
-
-
-  private generateParticipantInfo() {
-    // Random user nickname and sessionId
-    this.mySessionId = 'SessionA';
-    this.myUserName = 'Participant' + Math.floor(Math.random() * 100);
   }
 
   private deleteSubscriber(streamManager: StreamManager): void {
@@ -220,4 +207,33 @@ export class VideoComponent implements OnDestroy {
         });
     });
   }
+  startRecording() {
+    console.log('in here');
+    if (annyang) {
+      console.log('in anyang');
+      annyang.addCallback('result', (phrases) => {
+        this.speech_content = phrases[0];
+        console.log('Speech recognized. Possible sentences said:');
+        console.log(phrases);
+      });
+      // var commands = {
+      //     'Hello': function() {
+      //         alert('Hi! I can hear you.');
+      //     }
+      // };
+      // annyang.addCommands(commands);
+      annyang.start();
+
+    }
+  }
+  stopRecording() {
+    console.log('stopped');
+    annyang.pause();
+    const curr_time = new Date();
+    this._httpService.all_content.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
+    this.speech_content = '';
+
+  }
+
+
 }

@@ -1,33 +1,8 @@
-<!-- <div class="flexChild" id="camera-container">
-  <div class="camera-box">
-    <video id="local_video" autoplay></video>
-    <div id="received_videos"></div>
-  </div>
-</div> -->
 <div id="main-container" class="container">
-  <div *ngIf="!session" id="join">
-    <div id="join-dialog" class="jumbotron vertical-center">
-      <h1>Join a video session</h1>
-      <form class="form-group" (submit)="joinSession()">
-        <p>
-          <label>Participant</label>
-          <input class="form-control" type="text" id="userName" name="userName" [(ngModel)]="myUserName" required>
-        </p>
-        <p>
-          <label>Session</label>
-          <input class="form-control" type="text" id="sessionId" name="sessionId" [(ngModel)]="mySessionId" required>
-        </p>
-        <p class="text-center">
-          <input class="btn btn-lg btn-success" type="submit" name="commit" value="Join!">
-        </p>
-      </form>
-    </div>
-  </div>
 
-  <div *ngIf="session" id="session">
+  <div id="session">
     <div id="session-header">
-      <h1 id="session-title">{{mySessionId}}</h1>
-      <input class="btn btn-large btn-danger" type="button" id="buttonLeaveSession" (click)="leaveSession()" value="Leave session">
+      <h2 id="session-title">Session id: {{mySessionId}}</h2>
     </div>
     <div *ngIf="mainStreamManager" id="main-video" class="col-md-6">
       <app-user-video [streamManager]="mainStreamManager"></app-user-video>
@@ -41,4 +16,8 @@
       </div>
     </div>
   </div>
+
 </div>
+
+{{speech_content}}
+<button (mousedown)="startRecording()" (mouseup)="stopRecording()">Click to start, release to stop</button>

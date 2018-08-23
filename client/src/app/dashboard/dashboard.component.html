@@ -11,7 +11,7 @@
             <router-outlet></router-outlet>
         </div>
         <div class='col'>
-            <div id='chat_box' class='p-3'>Translation area</div>
+            <div id='chat_box' class='p-3'><span *ngFor="let translation of all_translations">{{translation[1]}} {{translation[0]}}<br></span></div>
             <button class='col bg-light text-dark border-thicc py-3'>download</button>
         </div>
     </div>  
