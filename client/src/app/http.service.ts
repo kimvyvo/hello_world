@@ -30,6 +30,7 @@ export class HttpService {
   deleteUser(id, sid) {
     return this._http.delete(`/users/${id}/${sid}`);
   }
+<<<<<<< HEAD
   // getTranslation(input, source_lang, output_lang) {
   //   var input_words = encodeURI(input);
   //   return this._http.get(`https://translation.googleapis.com/language/translate/v2/?q=${input_words}&source=${source_lang}&target=${output_lang}&key=AIzaSyBelrl6Q_1scFMH6KBC5X0Pj2fjvb_mPdk`);
@@ -38,3 +39,10 @@ export class HttpService {
 
   // }
 }
+=======
+  getTranslation(input, source_lang, output_lang) {
+    var input_words = encodeURI(input);
+    return this._http.get(`https://translation.googleapis.com/language/translate/v2/?q=${input_words}&source=${source_lang}&target=${output_lang}&key=`);
+  }
+}
+>>>>>>> 6344f06ba28ca1dda56c119c331f4e22945c5488
