@@ -5,5 +5,11 @@
   </div>
 </form>
 <div id="chat_box" class='text-center'>
-  <router-outlet></router-outlet>
+  <div id='ytb'>
+    <youtube-player
+    [videoId]="id" 
+    (ready)="savePlayer($event)"
+    (change)="onStateChange($event)">
+    </youtube-player>
+  </div>
 </div>

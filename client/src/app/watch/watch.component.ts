@@ -10,6 +10,8 @@ import * as $ from 'jquery';
 })
 export class WatchComponent implements OnInit {
   id: any;
+  private player;
+  private ytEvent;
   constructor(
     private _httpService: HttpService,
     private _route: ActivatedRoute
@@ -20,5 +22,20 @@ export class WatchComponent implements OnInit {
   }
   refresh(){
     location.reload();
+  }
+
+  onStateChange(event) {
+    this.ytEvent = event.data;
+  }
+  savePlayer(player) {
+    this.player = player;
+  }
+  
+  playVideo() {
+    this.player.playVideo();
+  }
+  
+  pauseVideo() {
+    this.player.pauseVideo();
   }
 }
