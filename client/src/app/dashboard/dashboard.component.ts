@@ -34,27 +34,29 @@ export class DashboardComponent implements OnInit {
     });
     this.all_translations = this._httpService.all_content;
   }
-  // leaveSite() {
-  //   this.socket.disconnect();
-  //   this._router.navigate(['/']);
-  // }
+
   leaveSite() {
-    const observable = this._httpService.deleteUser(this._shareService.my_user_id, this.selected_session);
-    observable.subscribe((data: any) => {
-      console.log('Deleted a user. Result:', data);
-      const observable2 = this._httpService.getSingleSession(this.selected_session);
-      observable2.subscribe((data2: any) => {
-        console.log(data2.data.users);
-        if (data2.data.users.length === 0) {
-          const observable3 = this._httpService.deleteSession(this.selected_session);
-          observable3.subscribe((data3: any) => {
-            console.log('Deleted a session. Result:', data3);
-            this.socket.disconnect();
-          });
-        } else {
-          this.socket.disconnect();
-        }
-      });
-    });
+    this.socket.disconnect();
+    this._router.navigate(['/']);
   }
+
+  // leaveSite() {
+  //   const observable = this._httpService.deleteUser(this._shareService.my_user_id, this.selected_session);
+  //   observable.subscribe((data: any) => {
+  //     console.log('Deleted a user. Result:', data);
+  //     const observable2 = this._httpService.getSingleSession(this.selected_session);
+  //     observable2.subscribe((data2: any) => {
+  //       console.log(data2.data.users);
+  //       if (data2.data.users.length === 0) {
+  //         const observable3 = this._httpService.deleteSession(this.selected_session);
+  //         observable3.subscribe((data3: any) => {
+  //           console.log('Deleted a session. Result:', data3);
+  //           this.socket.disconnect();
+  //         });
+  //       } else {
+  //         this.socket.disconnect();
+  //       }
+  //     });
+  //   });
+  // }
 }

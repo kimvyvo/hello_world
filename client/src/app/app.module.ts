@@ -18,6 +18,9 @@ import { ShareService } from './share.service';
 import { UserVideoComponent } from './video/user-video/user-video.component';
 import { OvVideoComponent } from './video/ov-video/ov-video.component';
 
+import { YoutubePlayerModule } from 'ngx-youtube-player';
+import { YtvComponent } from './ytv/ytv.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,13 +32,15 @@ import { OvVideoComponent } from './video/ov-video/ov-video.component';
     WatchComponent,
     ErrorComponent,
     UserVideoComponent,
-    OvVideoComponent
+    OvVideoComponent,
+    YtvComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    YoutubePlayerModule,
   ],
   providers: [HttpService, ShareService],
   bootstrap: [AppComponent]

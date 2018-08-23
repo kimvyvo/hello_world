@@ -9,12 +9,16 @@ import * as $ from 'jquery';
   styleUrls: ['./watch.component.css']
 })
 export class WatchComponent implements OnInit {
+  id: any;
   constructor(
     private _httpService: HttpService,
     private _route: ActivatedRoute
   ) { }
   ngOnInit() { }
   yt_search(){
-
+    console.log(this.id)
+  }
+  refresh(){
+    location.reload();
   }
 }
