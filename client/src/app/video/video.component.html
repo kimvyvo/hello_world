@@ -42,8 +42,16 @@
     </div>
   </div>
   {{speech_content}}
-  <button (mousedown)="startRecording()" (mouseup)="stopRecording()">Click to start, release to stop</button>
-  
+  <button (mousedown)="startRecording()" (mouseup)="stopRecording()">Click to start, release to stop</button><br>
+  <label for="lang_spoken">Language Spoken: </label>
+  <select name="lang_spoken" [(ngModel)]="lang_setting.lang_spoken">
+    <option *ngFor="let lang of lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
+  </select><br>
+  <label for="lang_to">Translate to: </label>
+  <select name="lang_to" [(ngModel)]="lang_setting.lang_to">
+    <option *ngFor="let lang of lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
+  </select>
+  {{lang_setting | json }}
 
 
 </div>
