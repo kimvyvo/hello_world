@@ -1,12 +1,6 @@
-<!-- <div class="flexChild" id="camera-container">
-  <div class="camera-box">
-    <video id="local_video" autoplay></video>
-    <div id="received_videos"></div>
-  </div>
-</div> -->
 <div id="main-container" class="container">
 
-  <div *ngIf="session" id="session">
+  <div id="session">
     <div id="session-header">
       <h2 id="session-title">Session id: {{mySessionId}}</h2>
     </div>
@@ -22,9 +16,8 @@
       </div>
     </div>
   </div>
-  {{speech_content}}
-  <button (mousedown)="startRecording()" (mouseup)="stopRecording()">Click to start, release to stop</button>
-  
-
 
 </div>
+
+{{speech_content}}
+<button (mousedown)="startRecording()" (mouseup)="stopRecording()">Click to start, release to stop</button>

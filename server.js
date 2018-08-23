@@ -13,7 +13,6 @@ app.all("*", (request ,response ,next) => {
     response.sendFile(path.resolve("./client/dist/client/index.html"))
 });
 
-// const video_srcs = [];
 io.on('connection', function(socket) {
     console.log('Connection established!');
 
@@ -56,12 +55,4 @@ io.on('connection', function(socket) {
     socket.on('send_text', function(){
         io.emit('receive_text');
     });
-
-    // socket.on('send_video', function(data){
-    //     connected_counter++;
-    //     video_srcs.push(data.video);
-    //     for (var src in video_srcs) {
-    //         socket.emit('receive_video', {video: src, count: connected_counter});
-    //     }
-    // });
 });

@@ -18,7 +18,11 @@ export class VideoComponent implements OnInit {
   OPENVIDU_SERVER_URL = 'https://' + location.hostname + ':4443';
   OPENVIDU_SERVER_SECRET = 'MY_SECRET';
 
-  session: any;
+  OV: OpenVidu;
+  session: Session;
+  publisher: StreamManager; // Local
+  subscribers: StreamManager[] = []; // Remotes
+
   // Join form
   mySessionId: string;
   myUserName: string;
@@ -29,8 +33,8 @@ export class VideoComponent implements OnInit {
 
   constructor(
     private httpClient: HttpClient,
-    private _shareService: ShareService,
     private _route: ActivatedRoute,
+    private _shareService: ShareService,
     private _httpService: HttpService) {
   }
 
@@ -38,7 +42,9 @@ export class VideoComponent implements OnInit {
 
   ngOnInit() {
     this._route.parent.params.subscribe((params: Params) => {
-      this.session = this._shareService.session;
+      this.session = this.session;
+      this.publisher = this.publisher;
+      this.subscribers = this.subscribers;
       this.mySessionId = params.id;
       this.myUserName = this._shareService.my_user_name;
       this.joinSession();
@@ -49,25 +55,25 @@ export class VideoComponent implements OnInit {
 
     // --- 1) Get an OpenVidu object ---
 
-    this._shareService.OV = new OpenVidu();
+    this.OV = new OpenVidu();
 
     // --- 2) Init a session ---
 
-    this._shareService.session = this._shareService.OV.initSession();
+    this.session = this.OV.initSession();
 
     // --- 3) Specify the actions when events take place in the session ---
 
     // On every new Stream received...
-    this._shareService.session.on('streamCreated', (event: StreamEvent) => {
+    this.session.on('streamCreated', (event: StreamEvent) => {
 
       // Subscribe to the Stream to receive it. Second parameter is undefined
       // so OpenVidu doesn't create an HTML video by its own
-      const subscriber: Subscriber = this._shareService.session.subscribe(event.stream, undefined);
-      this._shareService.subscribers.push(subscriber);
+      const subscriber: Subscriber = this.session.subscribe(event.stream, undefined);
+      this.subscribers.push(subscriber);
     });
 
     // On every Stream destroyed...
-    this._shareService.session.on('streamDestroyed', (event: StreamEvent) => {
+    this.session.on('streamDestroyed', (event: StreamEvent) => {
 
       // Remove the stream from 'subscribers' array
       this.deleteSubscriber(event.stream.streamManager);
@@ -81,14 +87,14 @@ export class VideoComponent implements OnInit {
 
       // First param is the token got from OpenVidu Server. Second param can be retrieved by every user on event
       // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
-      this._shareService.session.connect(token, { clientData: this.myUserName })
+      this.session.connect(token, { clientData: this.myUserName })
         .then(() => {
 
           // --- 5) Get your own camera stream ---
 
           // Init a publisher passing undefined as targetElement (we don't want OpenVidu to insert a video
           // element: we will manage it on our own) and with the desired properties
-          const publisher = this._shareService.OV.initPublisher(undefined, {
+          const publisher = this.OV.initPublisher(undefined, {
             audioSource: undefined, // The source of audio. If undefined default microphone
             videoSource: undefined, // The source of video. If undefined default webcam
             publishAudio: true,     // Whether you want to start publishing with your audio unmuted or not
@@ -101,11 +107,11 @@ export class VideoComponent implements OnInit {
 
           // --- 6) Publish your stream ---
 
-          this._shareService.session.publish(publisher);
+          this.session.publish(publisher);
 
           // Set the main video in the page to display our webcam and store our Publisher
           this.mainStreamManager = publisher;
-          this._shareService.publisher = publisher;
+          this.publisher = publisher;
         })
         .catch(error => {
           console.log('There was an error connecting to the session:', error.code, error.message);
@@ -114,9 +120,9 @@ export class VideoComponent implements OnInit {
   }
 
   private deleteSubscriber(streamManager: StreamManager): void {
-    const index = this._shareService.subscribers.indexOf(streamManager, 0);
+    const index = this.subscribers.indexOf(streamManager, 0);
     if (index > -1) {
-      this._shareService.subscribers.splice(index, 1);
+      this.subscribers.splice(index, 1);
     }
   }
 
