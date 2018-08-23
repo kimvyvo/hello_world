@@ -9,6 +9,7 @@ export class ShareService {
   my_user_name = '';
   socket: SocketIOClient.Socket;
 
+
   setUser(id, name) {
       this.my_user_id = id;
       this.my_user_name = name;

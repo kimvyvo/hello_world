@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
       this._shareService.setSocket(this.socket);
       this.socket.emit('new_user', {id: this._shareService.my_user_id, sid: params.id});
     });
-    this.all_translations = this._httpService.all_content
+    this.all_translations = this._httpService.all_content;
   }
   leaveSite() {
     this.socket.disconnect();

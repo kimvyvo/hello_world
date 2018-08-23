@@ -11,7 +11,6 @@ import { StreamManager } from 'openvidu-browser';
             cursor: pointer;
         }
         div div {
-            position: absolute;
             background: #f8f8f8;
             padding-left: 5px;
             padding-right: 5px;
