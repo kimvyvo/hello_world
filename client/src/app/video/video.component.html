@@ -4,9 +4,9 @@
     <div id="session-header">
       <h2 id="session-title">Session id: {{mySessionId}}</h2>
     </div>
-    <div *ngIf="mainStreamManager" id="main-video" class="col-md-6">
+    <!-- <div *ngIf="mainStreamManager" id="main-video" class="col-md-6">
       <app-user-video [streamManager]="mainStreamManager"></app-user-video>
-    </div>
+    </div> -->
     <div id="video-container" class="col-md-6">
       <div *ngIf="publisher" class="stream-container col-md-6 col-xs-6">
         <app-user-video [streamManager]="publisher" (clicked)="updateMainStreamManager(publisher)"></app-user-video>
