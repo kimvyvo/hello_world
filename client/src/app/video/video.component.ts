@@ -123,8 +123,6 @@ export class VideoComponent implements OnInit, OnDestroy {
     private _httpService: HttpService) {
   }
 
-  @HostListener('window:beforeunload')
-
   ngOnInit() {
     this._route.parent.params.subscribe((params: Params) => {
       console.log(this.OPENVIDU_SERVER_URL);

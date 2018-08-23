@@ -23,31 +23,31 @@ io.on('connection', function(socket) {
     });
     socket.on('disconnect', function(){
         console.log('Socket disconnect');
-        User.findOneAndRemove({_id: socket.id}, function(err){
-            if(err){
-                console.log('Something went wrong when removing a user', err);
-            }else{
-                Session.findByIdAndUpdate({_id: socket.sid}, {$pull: {users: {_id: socket.id}}}, function(err, data) {
-                    if(err){
-                        console.log('Something went wrong when removing a user from session', err);
-                    }else{
-                        Session.findOne({_id: socket.sid}, function(err, session){
-                            if(err){
-                                console.log('Something went wrong when getting a single session');
-                            }else{
-                                if(session.users.length === 0){
-                                    Session.findOneAndRemove({_id: socket.sid}, function(err){
-                                        if(err){
-                                            console.log('Something went wrong when removing a session');
-                                        }
-                                    });
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-        });
+        // User.findOneAndRemove({_id: socket.id}, function(err){
+        //     if(err){
+        //         console.log('Something went wrong when removing a user', err);
+        //     }else{
+        //         Session.findByIdAndUpdate({_id: socket.sid}, {$pull: {users: {_id: socket.id}}}, function(err, data) {
+        //             if(err){
+        //                 console.log('Something went wrong when removing a user from session', err);
+        //             }else{
+        //                 Session.findOne({_id: socket.sid}, function(err, session){
+        //                     if(err){
+        //                         console.log('Something went wrong when getting a single session');
+        //                     }else{
+        //                         if(session.users.length === 0){
+        //                             Session.findOneAndRemove({_id: socket.sid}, function(err){
+        //                                 if(err){
+        //                                     console.log('Something went wrong when removing a session');
+        //                                 }
+        //                             });
+        //                         }
+        //                     }
+        //                 });
+        //             }
+        //         });
+        //     }
+        // });
     });
     socket.on('init_text', function(){
         socket.emit('receive_text');
