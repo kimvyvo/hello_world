@@ -24,7 +24,7 @@
   </select><br>
   <label for="lang_to">Translate to: </label>
   <select name="lang_to" [(ngModel)]="lang_setting.lang_to">
-    <option *ngFor="let lang of lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
+    <option *ngFor="let lang of google_lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
   </select>
   {{lang_setting | json }}
 
