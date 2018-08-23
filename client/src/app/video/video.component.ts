@@ -28,7 +28,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   mySessionId: string;
   myUserName: string;
   lang_list = [['Afrikaans', 'af-ZA', ],
-  ['Bahasa Indonesia','id-ID'],
+  ['Bahasa Indonesia', 'id-ID'],
   ['Bahasa Melayu',   'ms-MY'],
   ['Català',          'ca-ES'],
   ['Čeština',         'cs-CZ'],
@@ -65,8 +65,8 @@ export class VideoComponent implements OnInit, OnDestroy {
   ['Hrvatski',        'hr_HR'],
   ['IsiZulu',         'zu-ZA'],
   ['Íslenska',        'is-IS'],
-  ['Italiano(Italia)','it-IT'],
-  ['Italiano(Svizzera)','it-CH'],
+  ['Italiano(Italia)', 'it-IT'],
+  ['Italiano(Svizzera)', 'it-CH'],
   ['Magyar',          'hu-HU'],
   ['Nederlands',      'nl-NL'],
   ['Norsk bokmål',    'nb-NO'],
@@ -90,8 +90,8 @@ export class VideoComponent implements OnInit, OnDestroy {
   ['Lingua latīna',   'la']];
 
   google_lang_list = [
-    
-  ]
+
+  ];
 
   // Main video of the page, will be 'publisher' or one of the 'subscribers',
   // updated by an Output event of UserVideoComponent children
@@ -108,6 +108,7 @@ export class VideoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._route.parent.params.subscribe((params: Params) => {
+      console.log(this.OPENVIDU_SERVER_URL);
       this.session = this.session;
       this.publisher = this.publisher;
       this.subscribers = this.subscribers;
