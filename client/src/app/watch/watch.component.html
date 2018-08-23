@@ -1,6 +1,6 @@
 <form (submit) = 'yt_search()' id="input_form" class='col m-0 p-0'>
   <div class='row m-0'>
-    <input type="text" id="search" placeholder="Search YouTube" autocomplete="off" class='col border-thicc m-0 py-0 px-3' style='border-right: none'>
+    <input type="text" name='search_input' [(ngModel)]='search_input' placeholder="Search YouTube" autocomplete="off" class='col border-thicc m-0 py-0 px-3' style='border-right: none'>
     <button class='col col-sm-4 py-3 m-0 border-thicc'>search</button>
   </div>
 </form>
