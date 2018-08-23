@@ -1,3 +1,13 @@
+#chat_box {
+    height: 75vh;
+    border: 2px solid black;
+    overflow-y: auto;
+    white-space: wrap;
+}
+.border-thicc{
+    border: 2px solid black;
+    border-bottom: none;
+}
 .stream-container {
 	padding: 0;
 }
