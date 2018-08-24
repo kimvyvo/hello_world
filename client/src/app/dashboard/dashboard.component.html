@@ -16,7 +16,7 @@
                 <span *ngFor="let translation of all_translations">{{translation[1]}} {{translation[0]}}<br></span>
                 <span *ngFor="let export of all_exports">{{ export }}<br></span>
             </div>
-            <button class='col bg-light text-dark border-thicc py-3'>download</button>
+            <button class='col bg-light text-dark border-thicc py-3' (click)="download_file()">download</button>
         </div>
     </div>  
     

@@ -16,7 +16,7 @@ import { HttpService } from '../http.service';
 })
 export class VideoComponent implements OnInit, OnDestroy {
   speech_content = [];
-  lang_setting = {'lang_spoken': 'ko', 'lang_to': 'en'};
+  lang_setting = {'lang_spoken': 'en-US', 'lang_to': 'ko'};
   is_recording = true;
   OPENVIDU_SERVER_URL = 'https://' + location.hostname + ':4443';
   OPENVIDU_SERVER_SECRET = 'MY_SECRET';
