@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../http.service';
 import { ShareService } from '../share.service';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-text',
@@ -14,7 +15,8 @@ export class TextComponent implements OnInit {
   constructor(
     private _httpService: HttpService,
     private _shareService: ShareService,
-    private _route: ActivatedRoute) { }
+    private _route: ActivatedRoute,
+    private _dashboard: DashboardComponent,) { }
 
   ngOnInit() {
     this._route.parent.params.subscribe((params: Params) => {
@@ -38,6 +40,12 @@ export class TextComponent implements OnInit {
         this.input_message = '';
       });
     });
+    const curr_time = new Date();
+    const observable3 = this._httpService.getTranslation(this.input_message, 'en', 'ko');
+    observable3.subscribe(data => {
+      this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
+      curr_time.getHours() + ':' + curr_time.getMinutes() + ' (chat - ' + this._shareService.my_user_name + ')']);
+    })
   }
   updateChatBox() {
     const observable = this._httpService.getSingleSession(this.current_session_id);

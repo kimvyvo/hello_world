@@ -33,5 +33,4 @@ export class HttpService {
   getTranslation(input_words, source_lang, output_lang) {
     return this._http.get(`https://translation.googleapis.com/language/translate/v2/?q=${input_words}&source=${source_lang}&target=${output_lang}&key=AIzaSyBelrl6Q_1scFMH6KBC5X0Pj2fjvb_mPdk`);
   }
-
 }

@@ -407,7 +407,7 @@ export class VideoComponent implements OnInit, OnDestroy {
         //   curr_minutes = '0' + curr_minutes
         // }
         this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
-        curr_time.getHours() + ':' + curr_time.getMinutes()]);
+        curr_time.getHours() + ':' + curr_time.getMinutes() + ' (video)']);
         this.speech_content = '';
       }
       console.log('data is', data);
