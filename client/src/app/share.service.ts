@@ -8,6 +8,7 @@ export class ShareService {
   my_user_id = '';
   my_user_name = '';
   socket: SocketIOClient.Socket;
+  exported_texts = [];
 
 
   setUser(id, name) {
@@ -16,6 +17,9 @@ export class ShareService {
   }
   setSocket(socket) {
     this.socket = socket;
+  }
+  addText(word) {
+    this.exported_texts.push(word);
   }
 
 }

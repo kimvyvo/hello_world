@@ -1,15 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild,  ElementRef, ViewEncapsulation } from '@angular/core';
+import { ShareService } from '../share.service';
+import * as MyScriptJS from 'myscript';
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'app-draw',
   templateUrl: './draw.component.html',
   styleUrls: ['./draw.component.css']
 })
-export class DrawComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+export class DrawComponent implements AfterViewInit {
+  constructor(private _shareService: ShareService) { }
+  @ViewChild('tref', {read: ElementRef}) domEditor: ElementRef;
+  editor;
+  ngAfterViewInit(): void {
+    // your code
+     console.log(this.domEditor.nativeElement);
+     this.editor = MyScriptJS.register(this.domEditor.nativeElement, {
+      recognitionParams: {
+        type: 'TEXT',
+        protocol: 'WEBSOCKET',
+        apiVersion: 'V4',
+        server: {
+          scheme: 'https',
+          host: 'webdemoapi.myscript.com',
+          applicationKey: '4e867bfc-a2a3-4a31-92b4-4135141f65f9',
+          hmacKey: 'fd7aa280-6cd1-48e0-915f-26c51638a11c',
+        },
+      },
+    });
+  }
+  getExports() {
+    // this.editor.export_((data) => {
+    //   console.log(data);
+    // });
+    // this.txt = this.editor.export_();
+    this._shareService.addText(this.editor.model.exports['text/plain']);
+    this._shareService.socket.emit('got_new_export');
   }
 
 }

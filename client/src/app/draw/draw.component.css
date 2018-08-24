@@ -1,3 +1,14 @@
+@import '~myscript/dist/myscript.min.css';
+
+#editor {
+  margin: auto;
+  min-width: 700px;
+  max-width: 700px;
+  min-height: 500px;
+  max-height: 500px;
+  border: 1px lightgrey solid;
+}
+
 #chat_box {
     height: 75vh;
     border: 2px solid black;
@@ -10,5 +21,5 @@ button{
 
 .border-thicc{
     border: 2px solid black;
-    border-top: none;
+    border-bottom: none;
 }
