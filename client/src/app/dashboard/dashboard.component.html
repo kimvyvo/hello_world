@@ -12,6 +12,15 @@
             <router-outlet></router-outlet>
         </div>
         <div class='col col-sm-4'>
+            {{lang_setting | json}}
+            <label for="lang_spoken" class='col-sm-5 text-right'>Translate from:  </label>
+            <select name="lang_spoken" [(ngModel)]="lang_setting.lang_spoken" class='col-sm-5'>
+                <option *ngFor="let lang of lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
+            </select><br>
+            <label for="lang_to" class='col-sm-5 text-right'>Translate to: </label>
+            <select name="lang_to" [(ngModel)]="lang_setting.lang_to" class='col-sm-5'>
+                <option *ngFor="let lang of google_lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
+            </select>
             <div id='chat_box' class='p-3'>
                 <span *ngFor="let translation of all_translations">{{translation[1]}} {{translation[0]}}<br></span>
                 <span *ngFor="let export of all_exports">{{ export }}<br></span>
