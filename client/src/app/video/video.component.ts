@@ -396,8 +396,8 @@ export class VideoComponent implements OnInit, OnDestroy {
     annyang.abort();
     const curr_time = new Date();
     const source_lang = this.lang_setting.lang_spoken.split('-')[0];
-    var input_words = '';
-    for (let word of this.speech_content) {
+    let input_words = '';
+    for (const word of this.speech_content) {
       input_words += word + '.';
     }
     console.log(input_words);
@@ -410,7 +410,7 @@ export class VideoComponent implements OnInit, OnDestroy {
         //   curr_minutes = '0' + curr_minutes
         // }
         this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
-        curr_time.getHours() + ':' + curr_time.getMinutes() + ' (video)']);
+        curr_time.toLocaleTimeString() + ' (video)']);
       }
       console.log('data is', data);
     });

@@ -209,10 +209,10 @@ export class WatchComponent implements OnInit {
     console.log('stopped');
     annyang.pause();
     const curr_time = new Date();
-    var source_lang = this.lang_setting.lang_spoken.split('-')[0];
-    let input_word = encodeURI(this.speech_content);
+    const source_lang = this.lang_setting.lang_spoken.split('-')[0];
+    const input_word = encodeURI(this.speech_content);
     console.log('this is source lang',source_lang);
-    let observable = this._httpService.getTranslation(input_word,source_lang,this.lang_setting.lang_to);
+    const observable = this._httpService.getTranslation(input_word,source_lang,this.lang_setting.lang_to);
     observable.subscribe(data=> {
       if (data['data']['translations'][0]['translatedText']) {
         console.log(data['data']['translations'][0]['translatedText']);
@@ -220,14 +220,15 @@ export class WatchComponent implements OnInit {
         // if (curr_time.getMinutes() < 9) {
         //   curr_minutes = '0' + curr_minutes
         // }
-        this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'], curr_time.getHours() + ':' + curr_time.getMinutes() + ' (watch)']);
+        this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
+          curr_time.toLocaleTimeString() + ' (watch)']);
         this.speech_content = '';
       }
-      console.log('data is',data);
+      console.log('data is', data);
     });
       // this._dashboard.all_translations.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
     this.speech_content = '';
     this.is_recording = true;
-    return
+    return;
   }
 }
