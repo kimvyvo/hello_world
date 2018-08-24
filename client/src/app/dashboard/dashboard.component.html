@@ -1,7 +1,7 @@
 <div class='row p-0 m-0'>  
     <h4 id='leave' class='col col-sm-4 m-0 p-2'><i class="fas fa-globe-americas"></i> Session ID: {{ selected_session }}</h4>
-    <button [routerLink]="['/dashboard', selected_session, 'video']" class='col'>video</button>
     <button [routerLink]="['/dashboard', selected_session, 'text']" class='col'>text</button>
+    <button [routerLink]="['/dashboard', selected_session, 'video']" class='col'>video</button>
     <button [routerLink]="['/dashboard', selected_session, 'draw']" class='col'>draw</button>
     <button [routerLink]="['/dashboard', selected_session, 'watch']" class='col'>watch</button>
     <button id='leave' (click)="leaveSite()" class='col col-sm-1 border border-light'>Leave</button>

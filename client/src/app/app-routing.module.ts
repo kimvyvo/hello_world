@@ -8,6 +8,7 @@ import { WatchComponent } from './watch/watch.component';
 import { ErrorComponent } from './error/error.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { YtvComponent } from './ytv/ytv.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
     { path: 'draw', component: DrawComponent },
     { path: 'watch', component: WatchComponent, children: [
       { path: 'ytv/:id', component: YtvComponent },
-    ] }
+    ] },
+    { path: 'welcome', component: WelcomeComponent },
   ] },
   { path: '**', component: ErrorComponent },
 ];

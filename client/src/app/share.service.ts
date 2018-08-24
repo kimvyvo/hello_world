@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShareService {
-  constructor() { }
+  constructor(
+    private _httpService: HttpService
+  ) { }
   my_user_id = '';
   my_user_name = '';
   socket: SocketIOClient.Socket;
@@ -19,7 +22,11 @@ export class ShareService {
     this.socket = socket;
   }
   addText(word) {
-    this.exported_texts.push(word);
+    const curr_time = new Date();
+    const observable = this._httpService.getTranslation(word, 'en', 'ko');
+    observable.subscribe(data => {
+      this.exported_texts.push(curr_time.getHours() + ':' + curr_time.getMinutes() + ' (draw) ' + data['data']['translations'][0]['translatedText'])
+    })
   }
 
 }

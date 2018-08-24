@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
       observable2.subscribe((data2: any) => {
         console.log('Added a user. Result:', data2);
         this._shareService.setUser(data2.data._id, this.create_name);
-        this._router.navigate(['/dashboard/' + data.data[data.data.length - 1]._id ]);
+        this._router.navigate(['/dashboard/' + data.data[data.data.length - 1]._id + '/welcome']);
       });
     });
   }
@@ -63,7 +63,7 @@ export class MainComponent implements OnInit {
             observable2.subscribe((data2: any) => {
               console.log('Data2?', data2);
               this._shareService.setUser(data2.data._id, data2.data.name);
-              this._router.navigate(['/dashboard/' + this.session_id ]);
+              this._router.navigate(['/dashboard/' + this.session_id + '/welcome']);
             });
           }
         }

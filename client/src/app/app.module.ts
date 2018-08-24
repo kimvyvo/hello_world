@@ -20,6 +20,7 @@ import { OvVideoComponent } from './video/ov-video/ov-video.component';
 
 import { YoutubePlayerModule } from 'ngx-youtube-player';
 import { YtvComponent } from './ytv/ytv.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { YtvComponent } from './ytv/ytv.component';
     ErrorComponent,
     UserVideoComponent,
     OvVideoComponent,
-    YtvComponent
+    YtvComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
