@@ -355,49 +355,67 @@ export class VideoComponent implements OnInit, OnDestroy {
     });
   }
   startRecording() {
-    console.log('in here');
     if (annyang) {
-      annyang.start();
-      annyang.setLanguage('ko');
-      // console.log(this.lang_setting.lang_spoken);
-      // console.log('in anyang');
+      annyang.start({continuous: false });
+      annyang.setLanguage(this.lang_setting.lang_spoken);
+      console.log(this.lang_setting.lang_spoken, this.lang_setting.lang_to);
       annyang.addCallback('result', (phrases) => {
-        console.log(phrases);
+        console.log('in the function', phrases);
+        this.speech_content = phrases[0];
+      //   if (this.is_recording == false) {
+      //     annyang.pause();
+      //     const curr_time = new Date();
+      //     var source_lang = this.lang_setting.lang_spoken.split('-')[0];
+      //     let input_word = encodeURI(this.speech_content);
+      //     console.log('this is source lang',source_lang);
+      //     let observable = this._httpService.getTranslation(input_word,source_lang,this.lang_setting.lang_to);
+      //     observable.subscribe(data=> {
+      //       if (data['data']['translations'][0]['translatedText']) {
+      //         console.log(data['data']['translations'][0]['translatedText']);
+      //         var curr_minutes = curr_time.getMinutes();
+      //         if (curr_time.getMinutes() < 9) {
+
+      //         }
+      //         this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
+      //         curr_time.getHours() + ':' + curr_time.getMinutes()]);
+      //         this.speech_content = '';
+      //       }
+      //       console.log('data is',data);
+      //     });
+      //     // this._dashboard.all_translations.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
+      //     this.speech_content = '';
+      //     this.is_recording = true;
+      //     return
+      //   }
       });
-    // if (annyang) {
-    //   annyang.start();
-    //   annyang.setLanguage('zh-TW');
-    //   console.log(this.lang_setting.lang_spoken);
-    //   console.log('in anyang');
-    //   annyang.addCallback('result', (phrases) => {
-    //     console.log("in the function", phrases)
-    //     this.speech_content = phrases[0];
-    //     if (this.is_recording == false) {
-    //       annyang.pause();
-    //       const curr_time = new Date();
-    //       var source_lang = this.lang_setting.lang_spoken.split('-')[0];
-    //       let input_word = encodeURI(this.speech_content);
-    //       let observable = this._httpService.getTranslation(input_word,source_lang,this.lang_setting.lang_to);
-    //       observable.subscribe(data=> {
-    //         console.log(data);
-    //       });
-    //       // this._dashboard.all_translations.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
-    //       // this.speech_content = '';
-    //       this.is_recording = true;
-    //     }
-    //   });
-      // var commands = {
-      //     'Hello': function() {
-      //         alert('Hi! I can hear you.');
-      //     }
-      // };
-      // annyang.addCommands(commands);
 
     }
   }
   stopRecording() {
-    // this.is_recording = false;
     console.log('stopped');
+    annyang.pause();
+    const curr_time = new Date();
+    const source_lang = this.lang_setting.lang_spoken.split('-')[0];
+    const input_word = encodeURI(this.speech_content);
+    console.log('this is source lang', source_lang);
+    const observable = this._httpService.getTranslation(input_word, source_lang, this.lang_setting.lang_to);
+    observable.subscribe(data => {
+      if (data['data']['translations'][0]['translatedText']) {
+        console.log(data['data']['translations'][0]['translatedText']);
+        // var curr_minutes = curr_time.getMinutes();
+        // if (curr_time.getMinutes() < 9) {
+        //   curr_minutes = '0' + curr_minutes
+        // }
+        this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
+        curr_time.getHours() + ':' + curr_time.getMinutes()]);
+        this.speech_content = '';
+      }
+      console.log('data is', data);
+    });
+      // this._dashboard.all_translations.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
+    this.speech_content = '';
+    this.is_recording = true;
+    return;
   }
 
 

@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 <button (mousedown)="startRecording()" (mouseup)="stopRecording()" class='col py-3 m-0 border-thicc'>Click to start, release to stop</button>
 <div id='chat_box'>
 
   {{speech_content}}
 
   <!-- <div class='col text-center'>{{lang_setting | json }}</div> -->
+=======
+<button (click)="startRecording()" class='col py-3 m-0 border-thicc'>Start</button>
+<button (click)="stopRecording()" class='col py-3 m-0 border-thicc'>Stop</button>
+<div id='chat_box'>-
+  <div class='col text-center'>{{lang_setting | json }}</div>
+>>>>>>> e277adecd553e993f8318e7dfb8270a4deeec7b0
   <label for="lang_spoken" class='col-sm-5 text-right'>Language Spoken: </label>
   <select name="lang_spoken" [(ngModel)]="lang_setting.lang_spoken" class='col-sm-5'>
     <option *ngFor="let lang of lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
@@ -27,5 +34,6 @@
         </div>
       </div>
     </div>
+    Phrase said: {{speech_content}}
   </div>
 </div>

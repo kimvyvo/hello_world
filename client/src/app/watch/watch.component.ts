@@ -23,7 +23,6 @@ export class WatchComponent implements OnInit {
   refresh() {
     location.reload();
   }
-
   onStateChange(event) {
     this.ytEvent = event.data;
   }
