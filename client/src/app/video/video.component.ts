@@ -112,42 +112,42 @@ export class VideoComponent implements OnInit, OnDestroy {
     ['Albanian', 'sq'],
     ['Arabic', 'ar'],
     ['Azerbaijani', 'az'],
-    ['Basque','eu'],
+    ['Basque', 'eu'],
     ['Bengali',	'bn'],
     ['Belarusian', 'be'],
-    ['Bulgarian','bg'],
-    ['Catalan','ca'],
-    ['Chinese Simplified','zh-CN'],
-    ['Chinese Traditional','zh-TW'],
-    ['Croatian','hr'],
-    ['Czech','cs'],
-    ['Danish','da'],
+    ['Bulgarian', 'bg'],
+    ['Catalan', 'ca'],
+    ['Chinese Simplified', 'zh-CN'],
+    ['Chinese Traditional', 'zh-TW'],
+    ['Croatian', 'hr'],
+    ['Czech', 'cs'],
+    ['Danish', 'da'],
     ['Dutch',	'nl'],
     ['English',	'en'],
-    ['Esperanto','eo'],
-    ['Estonian','et'],
-    ['Filipino','tl'],
-    ['Finnish','fi'],
-    ['French','fr'],
+    ['Esperanto', 'eo'],
+    ['Estonian', 'et'],
+    ['Filipino', 'tl'],
+    ['Finnish', 'fi'],
+    ['French', 'fr'],
     ['Galician',	'gl'],
     ['Georgian',	'ka'],
-    ['German','de'],
-    ['Greek','el'],
-    ['Gujarati','gu'],
-    ['Haitian Creole','ht'],
-    ['Hebrew','iw'],
-    ['Hindi','hi'],
-    ['Hungarian','hu'],
-    ['Icelandic','is'],
-    ['Indonesian','id'],
+    ['German', 'de'],
+    ['Greek', 'el'],
+    ['Gujarati', 'gu'],
+    ['Haitian Creole', 'ht'],
+    ['Hebrew', 'iw'],
+    ['Hindi', 'hi'],
+    ['Hungarian', 'hu'],
+    ['Icelandic', 'is'],
+    ['Indonesian', 'id'],
     ['Irish',	'ga'],
     ['Italian', 'it'],
-    ['Japanese','ja'],
-    ['Kannada','kn'],
-    ['Korean','ko'],
+    ['Japanese', 'ja'],
+    ['Kannada', 'kn'],
+    ['Korean', 'ko'],
     ['Latin', 'la']
 
-  ]
+  ];
 
   // Main video of the page, will be 'publisher' or one of the 'subscribers',
   // updated by an Output event of UserVideoComponent children
@@ -363,7 +363,6 @@ export class VideoComponent implements OnInit, OnDestroy {
       // console.log('in anyang');
       annyang.addCallback('result', (phrases) => {
         console.log(phrases);
-        
       });
     // if (annyang) {
     //   annyang.start();
@@ -385,7 +384,7 @@ export class VideoComponent implements OnInit, OnDestroy {
     //       // this._dashboard.all_translations.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
     //       // this.speech_content = '';
     //       this.is_recording = true;
-    //     } 
+    //     }
     //   });
       // var commands = {
       //     'Hello': function() {
