@@ -3,9 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpService } from '../http.service';
 import { ShareService } from '../share.service';
 import * as io from 'socket.io-client';
-// import * as $scope from 'angular-download';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
