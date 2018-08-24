@@ -149,10 +149,10 @@ export class WatchComponent implements OnInit {
     private _dashboard: DashboardComponent,
   ) { }
   ngOnInit() { }
-  yt_search(){
-    console.log(this.id)
+  yt_search() {
+    console.log(this.id);
   }
-  refresh(){
+  refresh() {
     location.reload();
   }
   onStateChange(event) {
@@ -161,11 +161,11 @@ export class WatchComponent implements OnInit {
   savePlayer(player) {
     this.player = player;
   }
-  
+
   playVideo() {
     this.player.playVideo();
   }
-  
+
   pauseVideo() {
     this.player.pauseVideo();
   }

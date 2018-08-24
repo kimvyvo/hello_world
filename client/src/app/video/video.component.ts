@@ -112,42 +112,42 @@ export class VideoComponent implements OnInit, OnDestroy {
     ['Albanian', 'sq'],
     ['Arabic', 'ar'],
     ['Azerbaijani', 'az'],
-    ['Basque','eu'],
+    ['Basque', 'eu'],
     ['Bengali',	'bn'],
     ['Belarusian', 'be'],
-    ['Bulgarian','bg'],
-    ['Catalan','ca'],
-    ['Chinese Simplified','zh-CN'],
-    ['Chinese Traditional','zh-TW'],
-    ['Croatian','hr'],
-    ['Czech','cs'],
-    ['Danish','da'],
+    ['Bulgarian', 'bg'],
+    ['Catalan', 'ca'],
+    ['Chinese Simplified', 'zh-CN'],
+    ['Chinese Traditional', 'zh-TW'],
+    ['Croatian', 'hr'],
+    ['Czech', 'cs'],
+    ['Danish', 'da'],
     ['Dutch',	'nl'],
     ['English',	'en'],
-    ['Esperanto','eo'],
-    ['Estonian','et'],
-    ['Filipino','tl'],
-    ['Finnish','fi'],
-    ['French','fr'],
+    ['Esperanto', 'eo'],
+    ['Estonian', 'et'],
+    ['Filipino', 'tl'],
+    ['Finnish', 'fi'],
+    ['French', 'fr'],
     ['Galician',	'gl'],
     ['Georgian',	'ka'],
-    ['German','de'],
-    ['Greek','el'],
-    ['Gujarati','gu'],
-    ['Haitian Creole','ht'],
-    ['Hebrew','iw'],
-    ['Hindi','hi'],
-    ['Hungarian','hu'],
-    ['Icelandic','is'],
-    ['Indonesian','id'],
+    ['German', 'de'],
+    ['Greek', 'el'],
+    ['Gujarati', 'gu'],
+    ['Haitian Creole', 'ht'],
+    ['Hebrew', 'iw'],
+    ['Hindi', 'hi'],
+    ['Hungarian', 'hu'],
+    ['Icelandic', 'is'],
+    ['Indonesian', 'id'],
     ['Irish',	'ga'],
     ['Italian', 'it'],
-    ['Japanese','ja'],
-    ['Kannada','kn'],
-    ['Korean','ko'],
+    ['Japanese', 'ja'],
+    ['Kannada', 'kn'],
+    ['Korean', 'ko'],
     ['Latin', 'la']
 
-  ]
+  ];
 
   // Main video of the page, will be 'publisher' or one of the 'subscribers',
   // updated by an Output event of UserVideoComponent children
@@ -360,7 +360,7 @@ export class VideoComponent implements OnInit, OnDestroy {
       annyang.setLanguage(this.lang_setting.lang_spoken);
       console.log(this.lang_setting.lang_spoken, this.lang_setting.lang_to);
       annyang.addCallback('result', (phrases) => {
-        console.log("in the function", phrases)
+        console.log('in the function', phrases);
         this.speech_content = phrases[0];
       //   if (this.is_recording == false) {
       //     annyang.pause();
@@ -376,7 +376,8 @@ export class VideoComponent implements OnInit, OnDestroy {
       //         if (curr_time.getMinutes() < 9) {
 
       //         }
-      //         this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'], curr_time.getHours() + ':' + curr_time.getMinutes()]);
+      //         this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
+      //         curr_time.getHours() + ':' + curr_time.getMinutes()]);
       //         this.speech_content = '';
       //       }
       //       console.log('data is',data);
@@ -385,7 +386,7 @@ export class VideoComponent implements OnInit, OnDestroy {
       //     this.speech_content = '';
       //     this.is_recording = true;
       //     return
-      //   } 
+      //   }
       });
 
     }
@@ -394,26 +395,27 @@ export class VideoComponent implements OnInit, OnDestroy {
     console.log('stopped');
     annyang.pause();
     const curr_time = new Date();
-    var source_lang = this.lang_setting.lang_spoken.split('-')[0];
-    let input_word = encodeURI(this.speech_content);
-    console.log('this is source lang',source_lang);
-    let observable = this._httpService.getTranslation(input_word,source_lang,this.lang_setting.lang_to);
-    observable.subscribe(data=> {
+    const source_lang = this.lang_setting.lang_spoken.split('-')[0];
+    const input_word = encodeURI(this.speech_content);
+    console.log('this is source lang', source_lang);
+    const observable = this._httpService.getTranslation(input_word, source_lang, this.lang_setting.lang_to);
+    observable.subscribe(data => {
       if (data['data']['translations'][0]['translatedText']) {
         console.log(data['data']['translations'][0]['translatedText']);
         // var curr_minutes = curr_time.getMinutes();
         // if (curr_time.getMinutes() < 9) {
         //   curr_minutes = '0' + curr_minutes
         // }
-        this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'], curr_time.getHours() + ':' + curr_time.getMinutes()]);
+        this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
+        curr_time.getHours() + ':' + curr_time.getMinutes()]);
         this.speech_content = '';
       }
-      console.log('data is',data);
+      console.log('data is', data);
     });
       // this._dashboard.all_translations.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
     this.speech_content = '';
     this.is_recording = true;
-    return
+    return;
   }
 
 
