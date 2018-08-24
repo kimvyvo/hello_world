@@ -393,7 +393,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   }
   stopRecording() {
     console.log('stopped');
-    annyang.pause();
+    annyang.abort();
     const curr_time = new Date();
     const source_lang = this.lang_setting.lang_spoken.split('-')[0];
     var input_words = '';
