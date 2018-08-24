@@ -11,7 +11,7 @@ export class ShareService {
   my_user_id = '';
   my_user_name = '';
   socket: SocketIOClient.Socket;
-  exported_texts = [];
+  // exported_texts = [];
 
 
   setUser(id, name) {
@@ -21,12 +21,13 @@ export class ShareService {
   setSocket(socket) {
     this.socket = socket;
   }
-  addText(word) {
-    const curr_time = new Date();
-    const observable = this._httpService.getTranslation(word, 'en', 'ko');
-    observable.subscribe(data => {
-      this.exported_texts.push(curr_time.getHours() + ':' + curr_time.getMinutes() + ' (draw) ' + data['data']['translations'][0]['translatedText'])
-    })
-  }
+  // addText(word) {
+  //   const curr_time = new Date();
+  //   const observable = this._httpService.getTranslation(word, 'en', 'ko');
+  //   observable.subscribe(data => {
+  //     this.exported_texts.push(curr_time.getHours() + ':' + curr_time.getMinutes() + ' (draw) ' +
+  //      data['data']['translations'][0]['translatedText'])
+  //   })
+  // }
 
 }

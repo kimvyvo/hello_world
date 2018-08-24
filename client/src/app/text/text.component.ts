@@ -16,7 +16,7 @@ export class TextComponent implements OnInit {
     private _httpService: HttpService,
     private _shareService: ShareService,
     private _route: ActivatedRoute,
-    private _dashboard: DashboardComponent,) { }
+    private _dashboard: DashboardComponent) { }
 
   ngOnInit() {
     this._route.parent.params.subscribe((params: Params) => {
@@ -32,7 +32,9 @@ export class TextComponent implements OnInit {
     const observable = this._httpService.getSingleSession(this.current_session_id);
     observable.subscribe((data: any) => {
       console.log('Got a single session. Result:', data);
-      const new_msg = data.data.chat_content + '<div class="row mb-2"><div class="col col-sm-2">' + this._shareService.my_user_name + ' </div><div class="col col-sm-9 px-4 py-2 border border-dark" style="border-radius:20px"> ' + this.input_message + '</div></div>';
+      const new_msg = data.data.chat_content + '<div class="row mb-2"><div class="col col-sm-2">' +
+        this._shareService.my_user_name + ' </div><div class="col col-sm-9 px-4 py-2 border border-dark" style="border-radius:20px"> ' +
+          this.input_message + '</div></div>';
       const observable2 = this._httpService.editSession(this.current_session_id, {chat_content: new_msg});
       observable2.subscribe((data2: any) => {
         console.log('Updated session. Result:', data2);
@@ -45,7 +47,7 @@ export class TextComponent implements OnInit {
     observable3.subscribe(data => {
       this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
       curr_time.getHours() + ':' + curr_time.getMinutes() + ' (chat - ' + this._shareService.my_user_name + ')']);
-    })
+    });
   }
   updateChatBox() {
     const observable = this._httpService.getSingleSession(this.current_session_id);

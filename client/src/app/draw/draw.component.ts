@@ -1,5 +1,7 @@
 import { Component, AfterViewInit, ViewChild,  ElementRef, ViewEncapsulation } from '@angular/core';
+import { HttpService } from '../http.service';
 import { ShareService } from '../share.service';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 import * as MyScriptJS from 'myscript';
 
 @Component({
@@ -9,7 +11,10 @@ import * as MyScriptJS from 'myscript';
   styleUrls: ['./draw.component.css']
 })
 export class DrawComponent implements AfterViewInit {
-  constructor(private _shareService: ShareService) { }
+  constructor(
+    private _httpService: HttpService,
+    private _shareService: ShareService,
+    private _dashboard: DashboardComponent) { }
   @ViewChild('tref', {read: ElementRef}) domEditor: ElementRef;
   editor;
   ngAfterViewInit(): void {
@@ -34,8 +39,14 @@ export class DrawComponent implements AfterViewInit {
     //   console.log(data);
     // });
     // this.txt = this.editor.export_();
-    this._shareService.addText(this.editor.model.exports['text/plain']);
-    this._shareService.socket.emit('got_new_export');
+    const curr_time = new Date();
+    const observable3 = this._httpService.getTranslation(this.editor.model.exports['text/plain'], 'en', 'ko');
+    observable3.subscribe(data => {
+      this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
+      curr_time.getHours() + ':' + curr_time.getMinutes() + ' (draw - ' + this._shareService.my_user_name + ')']);
+    });
+    // this._shareService.addText(this.editor.model.exports['text/plain']);
+    // this._shareService.socket.emit('got_new_export');
   }
 
 }
