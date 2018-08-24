@@ -7,11 +7,16 @@ button{
 }
 .border-thicc{
     border: 2px solid black;
-    border-top: none;
+
 }
 #chat_box {
-    height: 75vh;
+    height: 61vh;
     border: 2px solid black;
+    border-bottom: none;
     overflow-y: auto;
     white-space: wrap;
+}
+#select_lang{
+    background:  #f8f9fa;
+    border-bottom: none;
 }
