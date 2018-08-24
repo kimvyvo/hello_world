@@ -43,7 +43,8 @@ export class TextComponent implements OnInit {
       });
     });
     const curr_time = new Date();
-    const observable3 = this._httpService.getTranslation(this.input_message, 'en', 'ko');
+    const source_lang = this._dashboard.lang_setting.lang_spoken.split('-')[0];
+    const observable3 = this._httpService.getTranslation(encodeURI(this.input_message), source_lang, this._dashboard.lang_setting.lang_to);
     observable3.subscribe(data => {
       this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
       curr_time.toLocaleTimeString() + ' (chat - ' + this._shareService.my_user_name + ')']);
