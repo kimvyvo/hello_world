@@ -405,23 +405,17 @@ export class VideoComponent implements OnInit, OnDestroy {
     observable.subscribe(data => {
       if (data['data']['translations'][0]['translatedText']) {
         console.log(data['data']['translations'][0]['translatedText']);
-        // var curr_minutes = curr_time.getMinutes();
-        // if (curr_time.getMinutes() < 9) {
-        //   curr_minutes = '0' + curr_minutes
-        // }
-        if (Number(curr_time.getMinutes) < 10) {
+        if (curr_time.getMinutes() < 10) {
           this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
         curr_time.getHours() + ':0' + curr_time.getMinutes() + ' (video)']);
         } else {
+          console.log("else");
           this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
         curr_time.getHours() + ':' + curr_time.getMinutes() + ' (video)']);
         }
       }
       console.log('data is', data);
     });
-      // this._dashboard.all_translations.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
-    // this.speech_content = '';
-    // this.is_recording = true;
     this.speech_content = [];
     return;
   }
