@@ -1,4 +1,5 @@
 #chat_box {
+    background: black;
     height: 65vh;
     border: 2px solid black;
     overflow-y: auto;
@@ -11,9 +12,6 @@ button{
 .border-thicc{
     border: 2px solid black;
     border-bottom: none;
-}
-#ytb{
-    background: black;
 }
 #left{
     border-bottom: 2px solid black;
