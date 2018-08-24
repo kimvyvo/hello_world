@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShareService } from '../share.service';
 
 @Component({
   selector: 'app-welcome',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-
-  constructor() { }
-
+  
+  constructor(
+    private _shareService: ShareService,
+  ) { }
+  
   ngOnInit() {
+    console.log (this._shareService.my_user_name)
   }
 
 }
