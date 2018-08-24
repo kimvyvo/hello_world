@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router, NavigationEnd } from '@angular/router';
 import { HttpService } from '../http.service';
 import { ShareService } from '../share.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
@@ -147,11 +147,27 @@ export class WatchComponent implements OnInit {
     private _httpService: HttpService,
     private _shareService: ShareService,
     private _route: ActivatedRoute,
+    private _router: Router,
     private _dashboard: DashboardComponent,
-  ) { }
+  ) {
+    this._router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
+
+    this._router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+         // trick the Router into believing it's last link wasn't previously loaded
+         this._router.navigated = false;
+         // if you need to scroll back to top, here is the right place
+         window.scrollTo(0, 0);
+      }
+    });
+  }
   ngOnInit() { }
   yt_search() {
     console.log(this.id);
+    this._shareService.setYT(this.id);
+    // this._router.navigate(['../../']);
   }
   onStateChange(event) {
     this.ytEvent = event.data;
@@ -240,7 +256,7 @@ export class WatchComponent implements OnInit {
 
   //     //         }
   //     //         this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
-  //     //           curr_time.getHours() + ':' + curr_time.getMinutes()]);
+  //     //         curr_time.getHours() + ':' + curr_time.getMinutes()]);
   //     //         this.speech_content = '';
   //     //       }
   //     //       console.log('data is',data);

@@ -1,7 +1,7 @@
 <form id="input_form" class='col m-0 p-0'>
   <div class='row m-0'>
     <input type="text" name='id' [(ngModel)]='id' placeholder="Search YouTube" autocomplete="off" class='col border-thicc m-0 py-0 px-3' style='border-right: none'>
-    <button class='col col-sm-4 py-3 m-0 border-thicc' (click) = 'yt_search()' [routerLink] = "['ytv', id]">search</button>
+    <button class='col col-sm-4 py-3 m-0 border-thicc' (click) = 'yt_search()' [routerLink]="['ytv', id]">search</button>
   </div>
 </form>
 <div id="chat_box" class='text-center'>
