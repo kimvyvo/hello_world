@@ -152,7 +152,6 @@ export class WatchComponent implements OnInit {
   ngOnInit() { }
   yt_search() {
     console.log(this.id);
-    this._shareService.setYT(this.id);
   }
   onStateChange(event) {
     this.ytEvent = event.data;
