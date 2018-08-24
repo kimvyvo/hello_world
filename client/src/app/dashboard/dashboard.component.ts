@@ -3,9 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpService } from '../http.service';
 import { ShareService } from '../share.service';
 import * as io from 'socket.io-client';
-import * as $scope from 'angular-download';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -51,12 +49,6 @@ export class DashboardComponent implements OnInit {
 
 
     // console.log("in here");
-    MyController($scope, download) {
-      $scope.downloadFile = function() {
-          download.fromData('contents of the file', 'text/plain', 'file.txt');
-      };
-    }
-
 
   // leaveSite() {
   //   const observable = this._httpService.deleteUser(this._shareService.my_user_id, this.selected_session);
