@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../http.service';
+import { ShareService } from '../share.service';
 
 @Component({
   selector: 'app-ytv',
@@ -13,12 +14,13 @@ export class YtvComponent implements OnInit {
   private ytEvent;
   constructor(
     private _httpService: HttpService,
+    private _shareService: ShareService,
     private _route: ActivatedRoute
   ) { }
-  ngOnInit() { 
+  ngOnInit() {
     this._route.params.subscribe((params: Params) => {
-      this.id = params['id']
-      console.log(params['id'])
+      this.id = params['id'];
+      console.log(params['id']);
     });
   }
 
@@ -28,11 +30,11 @@ export class YtvComponent implements OnInit {
   savePlayer(player) {
     this.player = player;
   }
-  
+
   playVideo() {
     this.player.playVideo();
   }
-  
+
   pauseVideo() {
     this.player.pauseVideo();
   }

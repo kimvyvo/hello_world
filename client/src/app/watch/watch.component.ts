@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../http.service';
+import { ShareService } from '../share.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import * as $ from 'jquery';
 import * as annyang from 'annyang';
@@ -12,12 +13,12 @@ import * as annyang from 'annyang';
   styleUrls: ['./watch.component.css']
 })
 export class WatchComponent implements OnInit {
-  id = 'VcWWYdjePHE';
+  id = '';
 
   speech_content = '';
   lang_setting = {'lang_spoken': 'ko', 'lang_to': 'en'};
   is_recording = true;
-  
+
   private player;
   private ytEvent;
 
@@ -106,54 +107,53 @@ export class WatchComponent implements OnInit {
     ['Albanian', 'sq'],
     ['Arabic', 'ar'],
     ['Azerbaijani', 'az'],
-    ['Basque','eu'],
+    ['Basque', 'eu'],
     ['Bengali',	'bn'],
     ['Belarusian', 'be'],
-    ['Bulgarian','bg'],
-    ['Catalan','ca'],
-    ['Chinese Simplified','zh-CN'],
-    ['Chinese Traditional','zh-TW'],
-    ['Croatian','hr'],
-    ['Czech','cs'],
-    ['Danish','da'],
+    ['Bulgarian', 'bg'],
+    ['Catalan', 'ca'],
+    ['Chinese Simplified', 'zh-CN'],
+    ['Chinese Traditional', 'zh-TW'],
+    ['Croatian', 'hr'],
+    ['Czech', 'cs'],
+    ['Danish', 'da'],
     ['Dutch',	'nl'],
     ['English',	'en'],
-    ['Esperanto','eo'],
-    ['Estonian','et'],
-    ['Filipino','tl'],
-    ['Finnish','fi'],
-    ['French','fr'],
+    ['Esperanto', 'eo'],
+    ['Estonian', 'et'],
+    ['Filipino', 'tl'],
+    ['Finnish', 'fi'],
+    ['French', 'fr'],
     ['Galician',	'gl'],
     ['Georgian',	'ka'],
-    ['German','de'],
-    ['Greek','el'],
-    ['Gujarati','gu'],
-    ['Haitian Creole','ht'],
-    ['Hebrew','iw'],
-    ['Hindi','hi'],
-    ['Hungarian','hu'],
-    ['Icelandic','is'],
-    ['Indonesian','id'],
+    ['German', 'de'],
+    ['Greek', 'el'],
+    ['Gujarati', 'gu'],
+    ['Haitian Creole', 'ht'],
+    ['Hebrew', 'iw'],
+    ['Hindi', 'hi'],
+    ['Hungarian', 'hu'],
+    ['Icelandic', 'is'],
+    ['Indonesian', 'id'],
     ['Irish',	'ga'],
     ['Italian', 'it'],
-    ['Japanese','ja'],
-    ['Kannada','kn'],
-    ['Korean','ko'],
+    ['Japanese', 'ja'],
+    ['Kannada', 'kn'],
+    ['Korean', 'ko'],
     ['Latin', 'la']
 
-  ]
+  ];
 
   constructor(
     private _httpService: HttpService,
+    private _shareService: ShareService,
     private _route: ActivatedRoute,
     private _dashboard: DashboardComponent,
   ) { }
   ngOnInit() { }
   yt_search() {
     console.log(this.id);
-  }
-  refresh() {
-    location.reload();
+    this._shareService.setYT(this.id);
   }
   onStateChange(event) {
     this.ytEvent = event.data;
@@ -175,7 +175,7 @@ export class WatchComponent implements OnInit {
       annyang.setLanguage(this.lang_setting.lang_spoken);
       console.log(this.lang_setting.lang_spoken, this.lang_setting.lang_to);
       annyang.addCallback('result', (phrases) => {
-        console.log("in the function", phrases)
+        console.log('in the function', phrases);
         this.speech_content = phrases[0];
       //   if (this.is_recording == false) {
       //     annyang.pause();
@@ -191,7 +191,8 @@ export class WatchComponent implements OnInit {
       //         if (curr_time.getMinutes() < 9) {
 
       //         }
-      //         this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'], curr_time.getHours() + ':' + curr_time.getMinutes()]);
+      //         this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
+      //          curr_time.getHours() + ':' + curr_time.getMinutes()]);
       //         this.speech_content = '';
       //       }
       //       console.log('data is',data);
@@ -200,7 +201,7 @@ export class WatchComponent implements OnInit {
       //     this.speech_content = '';
       //     this.is_recording = true;
       //     return
-      //   } 
+      //   }
       });
 
     }
@@ -211,9 +212,9 @@ export class WatchComponent implements OnInit {
     const curr_time = new Date();
     const source_lang = this.lang_setting.lang_spoken.split('-')[0];
     const input_word = encodeURI(this.speech_content);
-    console.log('this is source lang',source_lang);
-    const observable = this._httpService.getTranslation(input_word,source_lang,this.lang_setting.lang_to);
-    observable.subscribe(data=> {
+    console.log('this is source lang', source_lang);
+    const observable = this._httpService.getTranslation(input_word, source_lang, this.lang_setting.lang_to);
+    observable.subscribe(data => {
       if (data['data']['translations'][0]['translatedText']) {
         console.log(data['data']['translations'][0]['translatedText']);
         // var curr_minutes = curr_time.getMinutes();

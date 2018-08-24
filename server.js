@@ -55,7 +55,8 @@ io.on('connection', function(socket) {
     socket.on('send_text', function(){
         io.emit('receive_text');
     });
-    socket.on('got_new_export', function(){
-        io.emit('new_export_is_here');
+    socket.on('new_utube_url', function(){
+        io.emit('newvid');
     });
+
 });

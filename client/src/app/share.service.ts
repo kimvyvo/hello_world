@@ -11,6 +11,7 @@ export class ShareService {
   my_user_id = '';
   my_user_name = '';
   socket: SocketIOClient.Socket;
+  ytvideo_id = '';
   // exported_texts = [];
 
 
@@ -20,6 +21,9 @@ export class ShareService {
   }
   setSocket(socket) {
     this.socket = socket;
+  }
+  setYT(id) {
+    this.ytvideo_id = id;
   }
   // addText(word) {
   //   const curr_time = new Date();

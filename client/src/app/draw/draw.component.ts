@@ -40,7 +40,8 @@ export class DrawComponent implements AfterViewInit {
     // });
     // this.txt = this.editor.export_();
     const curr_time = new Date();
-    const observable3 = this._httpService.getTranslation(this.editor.model.exports['text/plain'], 'en', this._dashboard.lang_setting.lang_to);
+    const observable3 = this._httpService.getTranslation(this.editor.model.exports['text/plain'],
+      'en', this._dashboard.lang_setting.lang_to);
     observable3.subscribe(data => {
       this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
       curr_time.toLocaleTimeString() + ' (draw - ' + this._shareService.my_user_name + ')']);

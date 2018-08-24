@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   all_exports = '';
   socket: SocketIOClient.Socket;
   selected_session = '';
-  
+
   lang_setting = {'lang_spoken': 'en-US', 'lang_to': 'ko'};
   lang_list = [['Afrikaans', 'af'],
   ['Arabic (Egypt)', 'ar-EG'],
@@ -133,31 +133,31 @@ export class DashboardComponent implements OnInit {
     ['Kannada', 'kn'],
     ['Korean', 'ko'],
     ['Latin', 'la'],
-    ['Latvian','lv'],
-    ['Lithuanian','lt'],
-    ['Macedonian','mk'],
-    ['Malay','ms'],
-    ['Norwegian','no'],
-    ['Persian','fa'],
-    ['Polish','pl'],
-    ['Portuguese','pt'],
-    ['Romanian','ro'],
-    ['Russian','ru'],
-    ['Serbian','sr'],
-    ['Slovak','sk'],
-    ['Slovenian','sl'],
-    ['Spanish','es'],
-    ['Swahili','sw'],
-    ['Swedish','sv'],
-    ['Tamil','ta'],
-    ['Telugu','te'],
-    ['Thai','th'],
-    ['Turkish','tr'],
-    ['Ukrainian','uk'],
-    ['Urdu','ur'],
-    ['Vietnamese','vi'],
-    ['Welsh','cy'],
-    ['Yiddish','yi']
+    ['Latvian', 'lv'],
+    ['Lithuanian', 'lt'],
+    ['Macedonian', 'mk'],
+    ['Malay', 'ms'],
+    ['Norwegian', 'no'],
+    ['Persian', 'fa'],
+    ['Polish', 'pl'],
+    ['Portuguese', 'pt'],
+    ['Romanian', 'ro'],
+    ['Russian', 'ru'],
+    ['Serbian', 'sr'],
+    ['Slovak', 'sk'],
+    ['Slovenian', 'sl'],
+    ['Spanish', 'es'],
+    ['Swahili', 'sw'],
+    ['Swedish', 'sv'],
+    ['Tamil', 'ta'],
+    ['Telugu', 'te'],
+    ['Thai', 'th'],
+    ['Turkish', 'tr'],
+    ['Ukrainian', 'uk'],
+    ['Urdu', 'ur'],
+    ['Vietnamese', 'vi'],
+    ['Welsh', 'cy'],
+    ['Yiddish', 'yi']
   ];
 
 
