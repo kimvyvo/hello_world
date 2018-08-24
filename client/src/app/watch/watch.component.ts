@@ -54,9 +54,13 @@ export class WatchComponent implements OnInit {
       console.log(this._dashboard.lang_setting.lang_spoken, this._dashboard.lang_setting.lang_to);
       annyang.addCallback('result', (phrases) => {
         console.log('in the function', phrases);
-        this.speech_content.push(encodeURI(phrases[0]));
+        if (this.speech_content.length >= 1 && this.speech_content[this.speech_content.length-1] === encodeURI(phrases[0])) {
+          console.log('do nothing');
+        } else {
+          this.speech_content.push(encodeURI(phrases[0]));
+        }
+        console.log(this.speech_content);
       });
-      return
     }
   }
   stopRecording() {
