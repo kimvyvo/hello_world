@@ -44,7 +44,6 @@ export class DashboardComponent implements OnInit {
   }
 
   download_file() {
-
   }
 
 

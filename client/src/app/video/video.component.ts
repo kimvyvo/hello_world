@@ -409,8 +409,13 @@ export class VideoComponent implements OnInit, OnDestroy {
         // if (curr_time.getMinutes() < 9) {
         //   curr_minutes = '0' + curr_minutes
         // }
-        this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
+        if (Number(curr_time.getMinutes) < 10) {
+          this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
+        curr_time.getHours() + ':0' + curr_time.getMinutes() + ' (video)']);
+        } else {
+          this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
         curr_time.getHours() + ':' + curr_time.getMinutes() + ' (video)']);
+        }
       }
       console.log('data is', data);
     });
