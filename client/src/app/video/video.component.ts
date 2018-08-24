@@ -275,8 +275,8 @@ export class VideoComponent implements OnInit, OnDestroy {
     annyang.abort();
     const curr_time = new Date();
     const source_lang = this._dashboard.lang_setting.lang_spoken.split('-')[0];
-    var input_words = '';
-    for (let word of this.speech_content) {
+    let input_words = '';
+    for (const word of this.speech_content) {
       input_words += word + '.';
     }
     console.log(input_words);
@@ -284,14 +284,12 @@ export class VideoComponent implements OnInit, OnDestroy {
     observable.subscribe(data => {
       if (data['data']['translations'][0]['translatedText']) {
         console.log(data['data']['translations'][0]['translatedText']);
-        if (curr_time.getMinutes() < 10) {
-          this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
-        curr_time.getHours() + ':0' + curr_time.getMinutes() + ' (video)']);
-        } else {
-          console.log("else");
-          this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
-        curr_time.getHours() + ':' + curr_time.getMinutes() + ' (video)']);
-        }
+        // var curr_minutes = curr_time.getMinutes();
+        // if (curr_time.getMinutes() < 9) {
+        //   curr_minutes = '0' + curr_minutes
+        // }
+        this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
+        curr_time.toLocaleTimeString() + ' (video)']);
       }
       console.log('data is', data);
     });

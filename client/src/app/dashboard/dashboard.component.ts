@@ -11,7 +11,7 @@ import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrie
 })
 export class DashboardComponent implements OnInit {
   all_translations = [];
-  all_exports = [];
+  all_exports = '';
   socket: SocketIOClient.Socket;
   selected_session = '';
   
@@ -191,11 +191,30 @@ export class DashboardComponent implements OnInit {
     this._router.navigate(['/']);
   }
 
-  download_file() {
+  download(filename, text) {
+    const dwld = confirm('Download the transcript?');
+    if (dwld) {
+      const element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
+    }
   }
 
 
-    // console.log("in here");
+  //   // console.log("in here");
+  //   MyController($scope, download) {
+  //     $scope.downloadFile = function() {
+  //         download.fromData('contents of the file', 'text/plain', 'file.txt');
+  //     };
+  //   }
+
 
   // leaveSite() {
   //   const observable = this._httpService.deleteUser(this._shareService.my_user_id, this.selected_session);

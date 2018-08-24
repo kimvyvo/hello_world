@@ -46,7 +46,7 @@ export class TextComponent implements OnInit {
     const observable3 = this._httpService.getTranslation(this.input_message, 'en', 'ko');
     observable3.subscribe(data => {
       this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
-      curr_time.getHours() + ':' + curr_time.getMinutes() + ' (chat - ' + this._shareService.my_user_name + ')']);
+      curr_time.toLocaleTimeString() + ' (chat - ' + this._shareService.my_user_name + ')']);
     });
   }
   updateChatBox() {
