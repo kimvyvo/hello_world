@@ -11,6 +11,7 @@ import * as io from 'socket.io-client';
 })
 export class DashboardComponent implements OnInit {
   all_translations = [];
+  all_exports = [];
   socket: SocketIOClient.Socket;
   selected_session = '';
   constructor(
@@ -31,6 +32,9 @@ export class DashboardComponent implements OnInit {
       this._shareService.setSocket(this.socket);
       this.socket.emit('new_user', {id: this._shareService.my_user_id, sid: params.id});
       console.log(this._shareService.my_user_id);
+      this._shareService.socket.on('new_export_is_here', () => {
+        this.all_exports = this._shareService.exported_texts;
+      });
     });
   }
 

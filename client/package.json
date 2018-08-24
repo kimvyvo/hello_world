@@ -23,6 +23,7 @@
     "@types/socket.io-client": "^1.4.32",
     "annyang": "^2.6.1",
     "core-js": "^2.5.4",
+    "myscript": "^4.2.0",
     "ngx-youtube-player": "^6.0.0",
     "openvidu-browser": "^2.4.0",
     "rxjs": "^6.0.0",
