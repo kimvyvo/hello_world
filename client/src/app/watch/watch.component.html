@@ -5,9 +5,7 @@
   </div>
 </form>
 <div id="chat_box" class='text-center'>
-  <div class='pt-2'>
-    <app-ytv></app-ytv>
-  </div>
+  <router-outlet></router-outlet>
 </div>
 <button (click)="startRecording()" id='left' class='col col-sm-6 py-3 m-0 border-thicc'>Start</button>
 <button (click)="stopRecording()" id='right' class='col col-sm-6 py-3 m-0 border-thicc'>Stop</button>

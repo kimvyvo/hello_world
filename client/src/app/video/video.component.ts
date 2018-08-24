@@ -241,6 +241,7 @@ export class VideoComponent implements OnInit, OnDestroy {
       annyang.addCallback('result', (phrases) => {
         console.log('in the function', phrases);
         this.speech_content.push(encodeURI(phrases[0]));
+        
       //   if (this.is_recording == false) {
       //     annyang.pause();
       //     const curr_time = new Date();
@@ -267,7 +268,6 @@ export class VideoComponent implements OnInit, OnDestroy {
       //     return
       //   }
       });
-
     }
   }
   stopRecording() {
