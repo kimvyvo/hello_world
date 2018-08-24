@@ -1,5 +1,5 @@
 #chat_box {
-    height: 75vh;
+    height: 65vh;
     border: 2px solid black;
     overflow-y: auto;
     white-space: wrap;
@@ -14,4 +14,13 @@ button{
 }
 #ytb{
     background: black;
+}
+#left{
+    border-bottom: 2px solid black;
+    border-top: none;
+}
+#right{
+    border: 2px solid black;
+    border-left: none;
+    border-top: none;
 }

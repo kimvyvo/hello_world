@@ -6,7 +6,11 @@
 }
 .border-thicc{
     border: 2px solid black;
-    border-bottom: none;
+	border-bottom: none;
+	border-right: none;
+}
+#right{
+	border-right: 2px solid black;
 }
 .stream-container {
 	padding: 0;

@@ -30,7 +30,7 @@ export class TextComponent implements OnInit {
     const observable = this._httpService.getSingleSession(this.current_session_id);
     observable.subscribe((data: any) => {
       console.log('Got a single session. Result:', data);
-      const new_msg = data.data.chat_content + '<p>' + this._shareService.my_user_name + ' --- ' + this.input_message + '</p>';
+      const new_msg = data.data.chat_content + '<div class="row mb-2"><div class="col col-sm-2">' + this._shareService.my_user_name + ' </div><div class="col col-sm-9 px-4 py-2 border border-dark" style="border-radius:20px"> ' + this.input_message + '</div></div>';
       const observable2 = this._httpService.editSession(this.current_session_id, {chat_content: new_msg});
       observable2.subscribe((data2: any) => {
         console.log('Updated session. Result:', data2);

@@ -1,13 +1,13 @@
-<button (click)="startRecording()" class='col py-3 m-0 border-thicc'>Start</button>
-<button (click)="stopRecording()" class='col py-3 m-0 border-thicc'>Stop</button>
-<div id='chat_box'>-
+<button (click)="startRecording()" class='col col-sm-6 py-3 m-0 border-thicc'>Start</button>
+<button (click)="stopRecording()" id='right' class='col col-sm-6 py-3 m-0 border-thicc'>Stop</button>
+<div id='chat_box'>
   <div class='col text-center'>{{lang_setting | json }}</div>
   <label for="lang_spoken" class='col-sm-5 text-right'>Language Spoken: </label>
   <select name="lang_spoken" [(ngModel)]="lang_setting.lang_spoken" class='col-sm-5'>
     <option *ngFor="let lang of lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
   </select><br>
-  <label for="lang_to">Translate to: </label>
-  <select name="lang_to" [(ngModel)]="lang_setting.lang_to">
+  <label for="lang_to" class='col-sm-5 text-right'>Translate to: </label>
+  <select name="lang_to" [(ngModel)]="lang_setting.lang_to" class='col-sm-5'>
     <option *ngFor="let lang of google_lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
   </select>
 
