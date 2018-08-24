@@ -267,7 +267,6 @@ export class VideoComponent implements OnInit, OnDestroy {
       //     return
       //   }
       });
-
     }
   }
   stopRecording() {
