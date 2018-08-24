@@ -46,17 +46,17 @@ export class DashboardComponent implements OnInit {
   }
 
   download_file() {
-    
+
   }
 
 
     // console.log("in here");
     MyController($scope, download) {
       $scope.downloadFile = function() {
-          download.fromData("contents of the file", "text/plain", "file.txt");
-      }
+          download.fromData('contents of the file', 'text/plain', 'file.txt');
+      };
     }
-  
+
 
   // leaveSite() {
   //   const observable = this._httpService.deleteUser(this._shareService.my_user_id, this.selected_session);
