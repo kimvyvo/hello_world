@@ -23,6 +23,7 @@ export class YtvComponent implements OnInit {
       console.log(params['id']);
     });
   }
+
   onStateChange(event) {
     this.ytEvent = event.data;
   }
