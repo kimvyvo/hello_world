@@ -15,7 +15,7 @@ import { HttpService } from '../http.service';
   styleUrls: ['./video.component.css']
 })
 export class VideoComponent implements OnInit, OnDestroy {
-  speech_content = '';
+  speech_content = [];
   lang_setting = {'lang_spoken': 'ko', 'lang_to': 'en'};
   is_recording = true;
   OPENVIDU_SERVER_URL = 'https://' + location.hostname + ':4443';
@@ -361,7 +361,7 @@ export class VideoComponent implements OnInit, OnDestroy {
       console.log(this.lang_setting.lang_spoken, this.lang_setting.lang_to);
       annyang.addCallback('result', (phrases) => {
         console.log('in the function', phrases);
-        this.speech_content = phrases[0];
+        this.speech_content.push(encodeURI(phrases[0]));
       //   if (this.is_recording == false) {
       //     annyang.pause();
       //     const curr_time = new Date();
@@ -396,9 +396,12 @@ export class VideoComponent implements OnInit, OnDestroy {
     annyang.pause();
     const curr_time = new Date();
     const source_lang = this.lang_setting.lang_spoken.split('-')[0];
-    const input_word = encodeURI(this.speech_content);
-    console.log('this is source lang', source_lang);
-    const observable = this._httpService.getTranslation(input_word, source_lang, this.lang_setting.lang_to);
+    var input_words = '';
+    for (let word of this.speech_content) {
+      input_words += word + '.';
+    }
+    console.log(input_words);
+    const observable = this._httpService.getTranslation(input_words, source_lang, this.lang_setting.lang_to);
     observable.subscribe(data => {
       if (data['data']['translations'][0]['translatedText']) {
         console.log(data['data']['translations'][0]['translatedText']);
@@ -408,13 +411,13 @@ export class VideoComponent implements OnInit, OnDestroy {
         // }
         this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
         curr_time.getHours() + ':' + curr_time.getMinutes() + ' (video)']);
-        this.speech_content = '';
       }
       console.log('data is', data);
     });
       // this._dashboard.all_translations.push([this.speech_content, curr_time.getHours() + ':' + curr_time.getMinutes()]);
-    this.speech_content = '';
-    this.is_recording = true;
+    // this.speech_content = '';
+    // this.is_recording = true;
+    this.speech_content = [];
     return;
   }
 
