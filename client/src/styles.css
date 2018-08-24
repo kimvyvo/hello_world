@@ -111,3 +111,12 @@ button#bottom{
 .round{
     border-radius: 20px;
 }
+
+.blue{
+    color: #48809c;
+}
+
+.bg-blue{
+    background: #48809c;
+    color:  #f8f9fa;
+}

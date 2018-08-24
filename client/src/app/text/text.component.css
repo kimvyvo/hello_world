@@ -22,3 +22,12 @@ button{
     border: 2px solid black;
     border-top: none;
 }
+
+.blue{
+    color: #48809c;
+}
+
+.bg-blue{
+    background: #48809c;
+    color:  #f8f9fa;
+}

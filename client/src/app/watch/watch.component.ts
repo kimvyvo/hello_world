@@ -12,7 +12,7 @@ import * as annyang from 'annyang';
   styleUrls: ['./watch.component.css']
 })
 export class WatchComponent implements OnInit {
-  id = 'VcWWYdjePHE';
+  id: any;
 
   speech_content = '';
   lang_setting = {'lang_spoken': 'ko', 'lang_to': 'en'};
