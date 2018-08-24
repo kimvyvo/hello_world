@@ -5,11 +5,27 @@
   </div>
 </form>
 <div id="chat_box" class='text-center'>
-  <div id='ytb'>
+  <div id='ytb' class='pt-1'>
     <youtube-player
     [videoId]="id" 
     (ready)="savePlayer($event)"
     (change)="onStateChange($event)">
     </youtube-player>
   </div>
+  <div class='row mx-0 mt-3 p-0'>
+    <label for="lang_spoken" class='col-sm-3'>Language Spoken: </label>
+    <div class='col-sm-3'>
+      <select name="lang_spoken" [(ngModel)]="lang_setting.lang_spoken" class='col'>
+        <option *ngFor="let lang of lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
+      </select>
+    </div>
+    <label for="lang_to" class='col-sm-3'>Translate to: </label>
+    <div class='col-sm-3'>
+      <select name="lang_to" [(ngModel)]="lang_setting.lang_to" class='col'>
+        <option *ngFor="let lang of google_lang_list" value="{{lang[1]}}">{{lang[0]}}</option>
+      </select>
+    </div>
+  </div>
 </div>
+<button (click)="startRecording()" id='left' class='col col-sm-6 py-3 m-0 border-thicc'>Start</button>
+<button (click)="stopRecording()" id='right' class='col col-sm-6 py-3 m-0 border-thicc'>Stop</button>
