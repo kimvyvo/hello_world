@@ -284,10 +284,6 @@ export class VideoComponent implements OnInit, OnDestroy {
     observable.subscribe(data => {
       if (data['data']['translations'][0]['translatedText']) {
         console.log(data['data']['translations'][0]['translatedText']);
-        // var curr_minutes = curr_time.getMinutes();
-        // if (curr_time.getMinutes() < 9) {
-        //   curr_minutes = '0' + curr_minutes
-        // }
         this._dashboard.all_translations.push([data['data']['translations'][0]['translatedText'],
         curr_time.toLocaleTimeString() + ' (video)']);
       }
